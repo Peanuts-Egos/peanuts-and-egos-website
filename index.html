@@ -3,39 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peanuts & Egos - The Definitive Voice of International American Football</title>
+    <title>Peanuts & Egos - The Untold Story of American Football Abroad</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* IMAGE PLACEHOLDERS - REPLACE WITH REAL ASSETS */
-        /*
-        REQUIRED IMAGES & DIMENSIONS:
-        
-        1. Book Cover Image: 
-           - Current: SVG placeholder in book section
-           - Recommended: 600x900px (2:3 ratio)
-           - Format: JPG/PNG
-           - Replace the data:image/svg+xml URL in the book showcase
-        
-        2. Denauld Brown Profile Photo:
-           - Current: SVG placeholder in about section  
-           - Recommended: 400x400px (square)
-           - Format: JPG/PNG
-           - Professional headshot or action shot from coaching
-        
-        3. Hero Background Image:
-           - Current: Set to 'images/peanuts-egos-hero.jpg' (Line ~190)
-           - This is your PERFECT hero image with built-in branding
-           - Upload your image as 'peanuts-egos-hero.jpg' in the images folder
-           - Image shows NFL Europe/GFL players with "PEANUTS & EGOS" text
-           - Also includes "THE WORLD BETWEEN THE LINES" tagline
-           - No text overlay needed - image is complete branding
-        
-        4. Optional Team/Action Photos:
-           - For content sections or testimonials
-           - Recommended: 1200x600px (landscape)
-           - NFL Europe team photos, coaching moments, etc.
-        */
-        
         * {
             margin: 0;
             padding: 0;
@@ -47,6 +17,7 @@
             line-height: 1.6;
             color: #333;
             background: #000;
+            overflow-x: hidden;
         }
         
         :root {
@@ -58,7 +29,192 @@
             --dark-bg: #1a1a1a;
             --light-gray: #f4f4f4;
         }
-        
+
+        /* LOADING SCREEN - DYNAMIC & SOCIAL MEDIA FEEL - PERMANENT */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--brand-black), var(--dark-bg));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .loading-logo {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .loading-brand-logo {
+            width: 150px;
+            height: 150px;
+            margin: 2rem 0;
+            animation: logoFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(227,150,64,0.3));
+        }
+
+        .loading-brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .loading-subtitle {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            animation: fadeSlideUp 2s ease-out;
+            font-style: italic;
+        }
+
+        .loading-animation {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-orange);
+            animation: loadingBounce 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dot:nth-child(3) { animation-delay: 0s; }
+
+        .loading-progress {
+            width: 300px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-orange), var(--brand-red));
+            border-radius: 2px;
+            animation: loadingProgress 3s ease-out forwards;
+        }
+
+        .social-preview {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: socialFloat 3s ease-in-out infinite;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(227,150,64,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            animation: iconFloat 2s ease-in-out infinite;
+        }
+
+        .social-icon:nth-child(1) { animation-delay: 0s; }
+        .social-icon:nth-child(2) { animation-delay: 0.2s; }
+        .social-icon:nth-child(3) { animation-delay: 0.4s; }
+        .social-icon:nth-child(4) { animation-delay: 0.6s; }
+        .social-icon:nth-child(5) { animation-delay: 0.8s; }
+
+        /* FLOATING BACKGROUND ELEMENTS */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(227,150,64,0.03), rgba(238,14,33,0.02));
+            animation: floatUnison 20s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 60%;
+            animation-delay: -10s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 40%;
+            animation-delay: -15s;
+        }
+
+        .floating-element:nth-child(5) {
+            width: 250px;
+            height: 250px;
+            bottom: 40%;
+            left: 20%;
+            animation-delay: -7s;
+        }
+
+        /* FLOWING BACKGROUND ANIMATION */
+        .flowing-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(227,150,64,0.01) 25%, 
+                transparent 50%, 
+                rgba(238,14,33,0.005) 75%, 
+                transparent 100%);
+            animation: flowBackground 30s linear infinite;
+            z-index: -2;
+        }
+
         /* Navigation */
         nav {
             background: rgba(0, 0, 0, 0.95);
@@ -68,6 +224,8 @@
             z-index: 1000;
             padding: 1rem 0;
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(227,150,64,0.1);
+            animation: navSlideDown 1s ease-out;
         }
         
         .nav-container {
@@ -92,13 +250,35 @@
         .nav-links a {
             color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
             font-weight: 500;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: all 0.3s;
+            transform: translateX(-50%);
         }
         
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--primary-orange);
+            background: rgba(227,150,64,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 80%;
         }
         
         .mobile-menu {
@@ -117,6 +297,7 @@
         
         .page-section.active {
             display: block;
+            animation: pageSlideIn 0.8s ease-out;
         }
         
         .container {
@@ -127,8 +308,7 @@
         
         /* Hero Section */
         .hero {
-            background: url('images/peanuts-egos-hero.jpg');
-            /* Your perfect hero image with all branding - no overlay needed */
+            background: url('peanuts-egos-hero.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -137,29 +317,36 @@
             align-items: center;
             color: var(--white);
             text-align: center;
+            position: relative;
         }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-content .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(227,150,64,0.1));
+            animation: heroOverlayPulse 8s ease-in-out infinite;
         }
         
         .hero-navigation {
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             padding: 2rem 0;
             border-top: 2px solid var(--primary-orange);
+            backdrop-filter: blur(15px);
+            animation: heroNavSlideUp 1s ease-out 0.5s both;
+        }
+
+        .hero-subtitle {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: textGlow 4s ease-in-out infinite;
         }
         
         .cta-buttons {
@@ -178,27 +365,48 @@
             display: inline-block;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn-primary {
-            background: var(--primary-orange);
+            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
             color: var(--white);
+            animation: buttonFloat 3s ease-in-out infinite;
         }
         
         .btn-primary:hover {
-            background: var(--brand-red);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(227,150,64,0.3);
         }
         
         .btn-secondary {
             background: transparent;
             color: var(--white);
             border: 2px solid var(--primary-orange);
+            animation: buttonFloat 3s ease-in-out infinite 0.5s;
         }
         
         .btn-secondary:hover {
             background: var(--primary-orange);
             color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(227,150,64,0.3);
         }
         
         /* Content Sections */
@@ -207,18 +415,7 @@
             background: var(--white);
             color: #333;
             position: relative;
-        }
-        
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="none" width="1200" height="400"/><g fill="%23e39640" opacity="0.03"><circle cx="100" cy="100" r="50"/><circle cx="1100" cy="300" r="80"/><rect x="400" y="50" width="400" height="20"/><rect x="300" y="200" width="600" height="15"/></g></svg>') no-repeat center;
-            background-size: cover;
-            pointer-events: none;
+            overflow: hidden;
         }
         
         .content-section.dark {
@@ -236,6 +433,7 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--primary-orange);
+            animation: titleSlideIn 1s ease-out;
         }
         
         .content-grid {
@@ -250,14 +448,27 @@
             padding: 2rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(230,126,34,0.3);
+            border: 1px solid rgba(227,150,64,0.3);
             text-align: justify;
+            transition: all 0.3s;
+            animation: cardFloat 6s ease-in-out infinite;
         }
+
+        .content-card:nth-child(1) { animation-delay: 0s; }
+        .content-card:nth-child(2) { animation-delay: 1s; }
+        .content-card:nth-child(3) { animation-delay: 2s; }
+        .content-card:nth-child(4) { animation-delay: 3s; }
         
         .content-card h3 {
             color: var(--primary-orange);
             margin-bottom: 1rem;
             font-size: 1.3rem;
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(227,150,64,0.2);
+            border-color: var(--primary-orange);
         }
         
         /* Book Section */
@@ -271,6 +482,7 @@
         
         .book-cover {
             text-align: center;
+            animation: bookFloat 8s ease-in-out infinite;
         }
         
         .book-cover img {
@@ -278,12 +490,19 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .book-cover img:hover {
+            transform: scale(1.05) rotateY(5deg);
+            box-shadow: 0 30px 60px rgba(227,150,64,0.4);
         }
         
         .book-info h2 {
             font-size: 2.5rem;
             color: var(--primary-orange);
             margin-bottom: 1rem;
+            animation: textShimmer 3s ease-in-out infinite;
         }
         
         .book-info .release-date {
@@ -303,6 +522,7 @@
         
         .profile-image {
             text-align: center;
+            animation: profileFloat 6s ease-in-out infinite;
         }
         
         .profile-image img {
@@ -310,6 +530,12 @@
             max-width: 300px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .profile-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(227,150,64,0.4);
         }
         
         .bio h3 {
@@ -336,12 +562,24 @@
             border-radius: 15px;
             text-align: center;
             border: 2px solid var(--primary-orange);
+            transition: all 0.3s;
+            animation: platformFloat 5s ease-in-out infinite;
+        }
+
+        .platform-card:nth-child(1) { animation-delay: 0s; }
+        .platform-card:nth-child(2) { animation-delay: 2.5s; }
+
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(227,150,64,0.3);
+            border-color: var(--brand-red);
         }
         
         .platform-card i {
             font-size: 3rem;
             color: var(--primary-orange);
             margin-bottom: 1rem;
+            animation: iconPulse 2s ease-in-out infinite;
         }
         
         .platform-card h3 {
@@ -353,34 +591,16 @@
         .embed-container {
             margin: 2rem 0;
         }
-        
-        .youtube-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .video-card {
-            background: rgba(255,255,255,0.05);
+
+        .youtube-embed {
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(230,126,34,0.3);
+            transition: all 0.3s;
         }
-        
-        .video-card iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
-        }
-        
-        .video-info {
-            padding: 1rem;
-        }
-        
-        .video-info h4 {
-            color: var(--primary-orange);
-            margin-bottom: 0.5rem;
+
+        .youtube-embed:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(227,150,64,0.3);
         }
         
         /* Footer */
@@ -389,6 +609,19 @@
             color: var(--white);
             padding: 3rem 0 1rem 0;
             border-top: 3px solid var(--primary-orange);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(227,150,64,0.05), transparent, rgba(238,14,33,0.03));
+            animation: footerGlow 10s ease-in-out infinite;
         }
         
         .footer-content {
@@ -396,6 +629,8 @@
             grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
         
         .footer-brand h3 {
@@ -428,18 +663,21 @@
         .footer-info ul li a {
             color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
             font-size: 0.9rem;
         }
         
         .footer-info ul li a:hover {
             color: var(--primary-orange);
+            transform: translateX(5px);
         }
         
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid var(--brand-gray);
+            position: relative;
+            z-index: 1;
         }
         
         .footer-bottom p {
@@ -462,12 +700,136 @@
             padding: 0.5rem;
             border-radius: 50%;
             background: rgba(227,150,64,0.1);
+            animation: socialFloat 4s ease-in-out infinite;
         }
+
+        .social-links a:nth-child(1) { animation-delay: 0s; }
+        .social-links a:nth-child(2) { animation-delay: 0.5s; }
+        .social-links a:nth-child(3) { animation-delay: 1s; }
+        .social-links a:nth-child(4) { animation-delay: 1.5s; }
+        .social-links a:nth-child(5) { animation-delay: 2s; }
         
         .social-links a:hover {
             color: var(--primary-orange);
-            background: rgba(227,150,64,0.2);
-            transform: translateY(-3px);
+            background: rgba(227,150,64,0.3);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(227,150,64,0.5); }
+            50% { text-shadow: 0 0 40px rgba(227,150,64,0.8), 0 0 60px rgba(238,14,33,0.3); }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 0.8; transform: translateY(0); }
+        }
+
+        @keyframes loadingBounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes socialFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        @keyframes floatUnison {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+            33% { transform: translateY(-20px) translateX(10px) scale(1.05); }
+            66% { transform: translateY(10px) translateX(-15px) scale(0.95); }
+        }
+
+        @keyframes flowBackground {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        @keyframes navSlideDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pageSlideIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroOverlayPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes heroNavSlideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+            50% { text-shadow: 0 0 20px rgba(227,150,64,0.5); }
+        }
+
+        @keyframes buttonFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        @keyframes titleSlideIn {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-10px) rotateY(2deg); }
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+
+        @keyframes profileFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes platformFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes footerGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
         
         /* Responsive Design */
@@ -499,14 +861,21 @@
                 display: block;
             }
             
-            .hero-content h1 {
+            .loading-logo {
                 font-size: 2.5rem;
             }
-            
-            .hero-content .tagline {
-                font-size: 1.2rem;
+
+            .loading-brand-logo {
+                width: 100px;
+                height: 100px;
+                margin: 1.5rem 0;
             }
-            
+
+            .loading-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
             .book-showcase,
             .about-grid,
             .content-hub {
@@ -528,34 +897,50 @@
                 gap: 2rem;
                 text-align: center;
             }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+
+            .floating-element {
+                display: none;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .content-card,
-        .platform-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        /* Hover Effects */
-        .content-card:hover,
-        .platform-card:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s;
         }
     </style>
 </head>
 <body>
+    <!-- LOADING SCREEN - PERMANENT SPLASH PAGE -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">PEANUTS & EGOS</div>
+        <div class="loading-brand-logo">
+            <img src="peanuts-egos-logo.png" alt="Peanuts & Egos Logo">
+        </div>
+        <div class="loading-subtitle">"The World Between The Lines"</div>
+        <div class="loading-animation">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+        <div class="social-preview">
+            <div class="social-icon"><i class="fas fa-newspaper"></i></div>
+            <div class="social-icon"><i class="fab fa-youtube"></i></div>
+            <div class="social-icon"><i class="fab fa-instagram"></i></div>
+            <div class="social-icon"><i class="fab fa-facebook"></i></div>
+            <div class="social-icon"><i class="fab fa-spotify"></i></div>
+        </div>
+    </div>
+
+    <!-- FLOATING BACKGROUND ELEMENTS -->
+    <div class="floating-bg">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- FLOWING BACKGROUND -->
+    <div class="flowing-bg"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -581,7 +966,7 @@
         
         <div class="hero-navigation">
             <div class="container">
-                <p style="color: var(--white); font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p class="hero-subtitle">
                     Where American football dreams meet European reality. Join the untold story of the game's global evolution through the eyes of those who lived it.
                 </p>
                 <div class="cta-buttons">
@@ -619,7 +1004,7 @@
                 <h2 class="section-title">Meet Denauld Brown</h2>
                 <div class="about-grid">
                     <div class="profile-image">
-                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><defs><linearGradient id='profileGrad' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' style='stop-color:%23e39640;stop-opacity:1' /><stop offset='100%' style='stop-color:%23010101;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23profileGrad)' width='400' height='400'/><circle fill='%23ffffff' cx='200' cy='160' r='80' stroke='%23e39640' stroke-width='4'/><rect fill='%23ffffff' x='140' y='260' width='120' height='100' rx='60' stroke='%23e39640' stroke-width='4'/><circle fill='%23010101' cx='180' cy='140' r='8'/><circle fill='%23010101' cx='220' cy='140' r='8'/><path fill='%23010101' d='M 180 180 Q 200 200 220 180' stroke='%23010101' stroke-width='2'/><rect fill='%23e39640' x='50' y='320' width='300' height='60' rx='10'/><text x='200' y='340' text-anchor='middle' fill='%23ffffff' font-size='16' font-weight='bold' font-family='Arial, sans-serif'>DENAULD BROWN</text><text x='200' y='360' text-anchor='middle' fill='%23010101' font-size='12' font-weight='bold' font-family='Arial, sans-serif'>NFL EUROPE CHAMPION</text><text x='200' y='375' text-anchor='middle' fill='%23010101' font-size='10' font-family='Arial, sans-serif'>German Football League Coach</text></svg>" alt="Denauld Brown - Author & Coach">
+                        <img src="denauld-brown.jpg" alt="Denauld Brown - Author & Coach">
                     </div>
                     <div class="bio">
                         <h3>Former NFL Europe Champion & German Football League Coach</h3>
@@ -639,7 +1024,7 @@
             <div class="container">
                 <div class="book-showcase">
                     <div class="book-cover">
-                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 450'><defs><linearGradient id='skyGrad' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' style='stop-color:%23e39640;stop-opacity:1' /><stop offset='50%' style='stop-color:%23010101;stop-opacity:1' /><stop offset='100%' style='stop-color:%23ee0e21;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23skyGrad)' width='300' height='450'/><g fill='%23010101' opacity='0.8'><polygon points='120,80 180,80 150,140'/><polygon points='100,90 140,90 120,130'/><polygon points='160,90 200,90 180,130'/><polygon points='80,100 120,100 100,140'/><polygon points='180,100 220,100 200,140'/></g><rect fill='%23228B22' x='20' y='350' width='260' height='80'/><g fill='%23ffffff' stroke='%23ffffff' stroke-width='2'><line x1='40' y1='365' x2='260' y2='365'/><line x1='40' y1='385' x2='260' y2='385'/><line x1='40' y1='405' x2='260' y2='405'/><line x1='40' y1='425' x2='260' y2='425'/><line x1='60' y1='350' x2='60' y2='430'/><line x1='90' y1='350' x2='90' y2='430'/><line x1='120' y1='350' x2='120' y2='430'/><line x1='150' y1='350' x2='150' y2='430'/><line x1='180' y1='350' x2='180' y2='430'/><line x1='210' y1='350' x2='210' y2='430'/><line x1='240' y1='350' x2='240' y2='430'/></g><ellipse fill='%23654321' cx='150' cy='390' rx='8' ry='5'/><rect fill='%23000000' x='20' y='20' width='260' height='50' rx='5'/><text x='150' y='35' text-anchor='middle' fill='%23e39640' font-size='14' font-weight='bold' font-family='Arial, sans-serif'>PEANUTS</text><text x='150' y='52' text-anchor='middle' fill='%23ffffff' font-size='12' font-weight='bold' font-family='Arial, sans-serif'>&amp; EGOS</text><rect fill='%23000000' x='20' y='280' width='260' height='30' rx='5'/><text x='150' y='298' text-anchor='middle' fill='%23e39640' font-size='10' font-weight='bold' font-family='Arial, sans-serif'>THE UNTOLD STORY OF</text><text x='150' y='310' text-anchor='middle' fill='%23ffffff' font-size='8' font-weight='bold' font-family='Arial, sans-serif'>AMERICAN FOOTBALL ABROAD</text></svg>" alt="Peanuts & Egos Book Cover">
+                        <img src="book-cover.jpg" alt="Peanuts & Egos Book Cover">
                     </div>
                     <div class="book-info">
                         <h2>The Phantom City Playbook</h2>
@@ -649,7 +1034,6 @@
                         <p>Facing a club president with a hidden agenda, a former coach plotting his return, and a team divided by loyalty and culture, Brown discovered that surviving in international football required more than tactical knowledge—it demanded mastering the unwritten rules of a game few Americans understood.</p>
                         <div class="cta-buttons">
                             <a href="#" class="btn btn-primary">Pre-Order on Amazon</a>
-                            <a href="#" onclick="showPage('content')" class="btn btn-secondary">Read Exclusive Previews</a>
                         </div>
                     </div>
                 </div>
@@ -658,15 +1042,15 @@
                     <h3 class="section-title" style="color: #333;">Behind the Poker Metaphor</h3>
                     <div class="content-grid">
                         <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
-                            <h3 style="color: #E67E22;">The Opening Hand</h3>
+                            <h3 style="color: #e39640;">The Opening Hand</h3>
                             <p>"THE BLUFF: How a club president's public support masked a calculated plan to undermine my authority from day one."</p>
                         </div>
                         <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
-                            <h3 style="color: #E67E22;">The Middle Game</h3>
+                            <h3 style="color: #e39640;">The Middle Game</h3>
                             <p>"READING THE TELLS: In international football, just like in poker, reading the invisible signals is more valuable than any playbook."</p>
                         </div>
                         <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
-                            <h3 style="color: #E67E22;">The Final Count</h3>
+                            <h3 style="color: #e39640;">The Final Count</h3>
                             <p>"GOING ALL IN: The pivotal decision to start 19-year-old Niklas Garry wasn't just a football choice—it was pushing all my chips to the center of the table."</p>
                         </div>
                     </div>
@@ -695,7 +1079,9 @@
                         <h3>YouTube Channel</h3>
                         <p>International football analysis & interviews. Watch exclusive episodes featuring NFL Europe veterans and coaching insights.</p>
                         <div class="embed-container">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/videoseries?list=PLrAXtmRdnEQeiGGTJ6_HggqeQNdkQ-gRF" title="Peanuts & Egos Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
+                            <div class="youtube-embed">
+                                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VwQjbOdyNWw" title="Peanuts & Egos Latest Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
+                            </div>
                         </div>
                         <a href="https://www.youtube.com/@peanutsandegos" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">Subscribe on YouTube</a>
                     </div>
@@ -736,6 +1122,24 @@
                         <h3 style="color: var(--primary-orange); margin-bottom: 2rem;">The Final Hand Awaits</h3>
                         <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Every leader faces their own phantom city – a place where the visible game masks the invisible one. Your next chapter begins October 9, 2025.</p>
                         <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-orange); margin-top: 2rem;">"ANTE UP"</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://peanutsandegos.substack.com" target="_blank" title="Substack Newsletter">
+                            <i class="fas fa-newspaper"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" title="YouTube Channel">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/peanutsandegos" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/profile.php?id=61575224906188" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD" target="_blank" title="Spotify Podcast">
+                            <i class="fab fa-spotify"></i>
+                        </a>
                     </div>
                     
                     <div style="text-align: center; margin-top: 3rem;">
@@ -807,6 +1211,9 @@
     </footer>
 
     <script>
+        // LOADING SCREEN - PERMANENT (No auto-hide)
+        // The loading screen stays visible as a splash page
+
         function showPage(pageId) {
             // Hide all pages
             const pages = document.querySelectorAll('.page-section');
@@ -846,49 +1253,50 @@
             }
         });
         
-        // Add scroll effect to hero
+        // Enhanced scroll effects
         window.addEventListener('scroll', function() {
             const hero = document.querySelector('.hero');
             const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
+            const rate = scrolled * -0.3;
             
             if (hero) {
                 hero.style.transform = `translateY(${rate}px)`;
             }
+
+            // Parallax effect for floating elements
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Dynamic content loading effect
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content cards for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.content-card, .platform-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+                observer.observe(card);
+            });
         });
     </script>
-
-    <!-- 
-    ============================================
-    IMAGE REPLACEMENT GUIDE
-    ============================================
-    
-    TO REPLACE PLACEHOLDERS WITH REAL IMAGES:
-    
-    1. BOOK COVER (Line ~460):
-       Find: src="data:image/svg+xml,<svg..."
-       Replace with: src="images/book-cover.jpg"
-    
-    2. PROFILE PHOTO (Line ~480):
-       Find: src="data:image/svg+xml,<svg..."  
-       Replace with: src="images/denauld-brown.jpg"
-    
-    3. HERO BACKGROUND (Line ~190):
-       This is your PERFECT hero image with all the branding built-in
-       Current: url('images/peanuts-egos-hero.jpg')
-       Upload your hero image with this exact filename
-       No changes needed - image contains all branding elements
-    
-    RECOMMENDED FOLDER STRUCTURE:
-    /
-    ├── index.html
-    ├── images/
-    │   ├── book-cover.jpg
-    │   ├── denauld-brown.jpg
-    │   ├── hero-background.jpg
-    │   └── [other-images].jpg
-    
-    ============================================
-    -->
 </body>
 </html>
