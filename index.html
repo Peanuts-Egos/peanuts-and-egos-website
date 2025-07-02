@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peanuts & Egos - The Untold Story of American Football Abroad</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* IMAGE PLACEHOLDERS - REPLACE WITH REAL ASSETS */
+        /*
+        REQUIRED IMAGES & DIMENSIONS:
+        
+        1. Book Cover Image: 
+           - Current: SVG placeholder in book section
+           - Recommended: 600x900px (2:3 ratio)
+           - Format: JPG/PNG
+           - Replace the data:image/svg+xml URL in the book showcase
+        
+        2. Denauld Brown Profile Photo:
+           - Current: SVG placeholder in about section  
+           - Recommended: 400x400px (square)
+           - Format: JPG/PNG
+           - Professional headshot or action shot from coaching
+        
+        3. Hero Background Image:
+           - Current: Set to 'images/peanuts-egos-hero.jpg' (Line ~190)
+           - This is your PERFECT hero image with built-in branding
+           - Upload your image as 'peanuts-egos-hero.jpg' in the images folder
+           - Image shows NFL Europe/GFL players with "PEANUTS & EGOS" text
+           - Also includes "THE WORLD BETWEEN THE LINES" tagline
+           - No text overlay needed - image is complete branding
+        
+        4. Optional Team/Action Photos:
+           - For content sections or testimonials
+           - Recommended: 1200x600px (landscape)
+           - NFL Europe team photos, coaching moments, etc.
+        */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+        
+        :root {
+            --primary-orange: #e39640;
+            --brand-red: #ee0e21;
+            --brand-black: #010101;
+            --brand-gray: #838383;
+            --white: #ffffff;
+            --dark-bg: #1a1a1a;
+            --light-gray: #f4f4f4;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .nav-spacer {
+            flex: 1;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-orange);
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Page Sections */
+        .page-section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('images/peanuts-egos-hero.jpg');
+            /* Your perfect hero image with all branding - no overlay needed */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-navigation {
+            background: rgba(0,0,0,0.9);
+            padding: 2rem 0;
+            border-top: 2px solid var(--primary-orange);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--brand-red);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--primary-orange);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+            background: var(--white);
+            color: #333;
+            position: relative;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="none" width="1200" height="400"/><g fill="%23e39640" opacity="0.03"><circle cx="100" cy="100" r="50"/><circle cx="1100" cy="300" r="80"/><rect x="400" y="50" width="400" height="20"/><rect x="300" y="200" width="600" height="15"/></g></svg>') no-repeat center;
+            background-size: cover;
+            pointer-events: none;
+        }
+        
+        .content-section.dark {
+            background: var(--dark-bg);
+            color: var(--white);
+        }
+        
+        .content-section.gray {
+            background: var(--brand-gray);
+            color: var(--white);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-orange);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .content-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(230,126,34,0.3);
+            text-align: justify;
+        }
+        
+        .content-card h3 {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Book Section */
+        .book-showcase {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+        
+        .book-cover {
+            text-align: center;
+        }
+        
+        .book-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .book-info h2 {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .book-info .release-date {
+            font-size: 1.2rem;
+            color: var(--primary-orange);
+            margin-bottom: 2rem;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+            margin: 4rem 0;
+        }
+        
+        .profile-image {
+            text-align: center;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .bio h3 {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .bio p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Content Hub */
+        .content-hub {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+        
+        .platform-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-orange);
+        }
+        
+        .platform-card i {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .platform-card h3 {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .embed-container {
+            margin: 2rem 0;
+        }
+        
+        .youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .video-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(230,126,34,0.3);
+        }
+        
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 1rem;
+        }
+        
+        .video-info h4 {
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            color: var(--white);
+            padding: 3rem 0 1rem 0;
+            border-top: 3px solid var(--primary-orange);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-brand h3 {
+            color: var(--primary-orange);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: var(--brand-gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4,
+        .footer-info h4 {
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-info ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-info ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-info ul li a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--brand-gray);
+        }
+        
+        .footer-bottom p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(227,150,64,0.1);
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-orange);
+            background: rgba(227,150,64,0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                justify-content: space-between;
+            }
+            
+            .nav-spacer {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0,0,0,0.95);
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .book-showcase,
+            .about-grid,
+            .content-hub {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-card,
+        .platform-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Hover Effects */
+        .content-card:hover,
+        .platform-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-spacer"></div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('book')">The Book</a></li>
+                <li><a href="#" onclick="showPage('content')">Content</a></li>
+                <li><a href="#" onclick="showPage('connect')">Connect</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+        <div class="hero">
+            <!-- Hero image contains all branding - no text overlay needed -->
+        </div>
+        
+        <div class="hero-navigation">
+            <div class="container">
+                <p style="color: var(--white); font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Where American football dreams meet European reality. Join the untold story of the game's global evolution through the eyes of those who lived it.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" onclick="showPage('book')" class="btn btn-primary">Pre-Order The Book</a>
+                    <a href="#" onclick="showPage('content')" class="btn btn-secondary">Watch Latest Episodes</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section dark">
+            <div class="container">
+                <h2 class="section-title">Our Mission</h2>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3><i class="fas fa-globe-americas"></i> Global Perspective</h3>
+                        <p>Documenting American football's international journey through firsthand accounts and expert insights unavailable anywhere else.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3><i class="fas fa-users"></i> Authentic Stories</h3>
+                        <p>From NFL Europe veterans to international pioneers, we share the real experiences of those who built the game globally.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3><i class="fas fa-chart-line"></i> Strategic Analysis</h3>
+                        <p>Expert breakdown of the NFL's global expansion initiatives and the evolution of international playing styles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page-section">
+        <div class="content-section gray">
+            <div class="container">
+                <h2 class="section-title">Meet Denauld Brown</h2>
+                <div class="about-grid">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><defs><linearGradient id='profileGrad' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' style='stop-color:%23e39640;stop-opacity:1' /><stop offset='100%' style='stop-color:%23010101;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23profileGrad)' width='400' height='400'/><circle fill='%23ffffff' cx='200' cy='160' r='80' stroke='%23e39640' stroke-width='4'/><rect fill='%23ffffff' x='140' y='260' width='120' height='100' rx='60' stroke='%23e39640' stroke-width='4'/><circle fill='%23010101' cx='180' cy='140' r='8'/><circle fill='%23010101' cx='220' cy='140' r='8'/><path fill='%23010101' d='M 180 180 Q 200 200 220 180' stroke='%23010101' stroke-width='2'/><rect fill='%23e39640' x='50' y='320' width='300' height='60' rx='10'/><text x='200' y='340' text-anchor='middle' fill='%23ffffff' font-size='16' font-weight='bold' font-family='Arial, sans-serif'>DENAULD BROWN</text><text x='200' y='360' text-anchor='middle' fill='%23010101' font-size='12' font-weight='bold' font-family='Arial, sans-serif'>NFL EUROPE CHAMPION</text><text x='200' y='375' text-anchor='middle' fill='%23010101' font-size='10' font-family='Arial, sans-serif'>German Football League Coach</text></svg>" alt="Denauld Brown - Author & Coach">
+                    </div>
+                    <div class="bio">
+                        <h3>Former NFL Europe Champion & German Football League Coach</h3>
+                        <p>Denauld Brown brings a rare dual perspective as both a player and coach in international football. As an NFL Europe champion, he experienced the league's highs and lows from inside the locker room.</p>
+                        <p>Later, as a head coach in the German Football League, he helped develop European talent and witnessed the grassroots growth of the sport across the continent.</p>
+                        <p>This unique journey gives him unparalleled insight into how American football translates globally—both culturally and strategically. In Bielefeld, a city locals joke "doesn't exist," he entered a high-stakes game where X's and O's took a backseat to egos and politics.</p>
+                        <p><strong>With unflinching honesty, Brown reveals how navigating cultural clashes and backdoor politics transformed his approach to leadership forever.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Page -->
+    <section id="book" class="page-section">
+        <div class="content-section dark">
+            <div class="container">
+                <div class="book-showcase">
+                    <div class="book-cover">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 450'><defs><linearGradient id='skyGrad' x1='0%' y1='0%' x2='0%' y2='100%'><stop offset='0%' style='stop-color:%23e39640;stop-opacity:1' /><stop offset='50%' style='stop-color:%23010101;stop-opacity:1' /><stop offset='100%' style='stop-color:%23ee0e21;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23skyGrad)' width='300' height='450'/><g fill='%23010101' opacity='0.8'><polygon points='120,80 180,80 150,140'/><polygon points='100,90 140,90 120,130'/><polygon points='160,90 200,90 180,130'/><polygon points='80,100 120,100 100,140'/><polygon points='180,100 220,100 200,140'/></g><rect fill='%23228B22' x='20' y='350' width='260' height='80'/><g fill='%23ffffff' stroke='%23ffffff' stroke-width='2'><line x1='40' y1='365' x2='260' y2='365'/><line x1='40' y1='385' x2='260' y2='385'/><line x1='40' y1='405' x2='260' y2='405'/><line x1='40' y1='425' x2='260' y2='425'/><line x1='60' y1='350' x2='60' y2='430'/><line x1='90' y1='350' x2='90' y2='430'/><line x1='120' y1='350' x2='120' y2='430'/><line x1='150' y1='350' x2='150' y2='430'/><line x1='180' y1='350' x2='180' y2='430'/><line x1='210' y1='350' x2='210' y2='430'/><line x1='240' y1='350' x2='240' y2='430'/></g><ellipse fill='%23654321' cx='150' cy='390' rx='8' ry='5'/><rect fill='%23000000' x='20' y='20' width='260' height='50' rx='5'/><text x='150' y='35' text-anchor='middle' fill='%23e39640' font-size='14' font-weight='bold' font-family='Arial, sans-serif'>PEANUTS</text><text x='150' y='52' text-anchor='middle' fill='%23ffffff' font-size='12' font-weight='bold' font-family='Arial, sans-serif'>&amp; EGOS</text><rect fill='%23000000' x='20' y='280' width='260' height='30' rx='5'/><text x='150' y='298' text-anchor='middle' fill='%23e39640' font-size='10' font-weight='bold' font-family='Arial, sans-serif'>THE UNTOLD STORY OF</text><text x='150' y='310' text-anchor='middle' fill='%23ffffff' font-size='8' font-weight='bold' font-family='Arial, sans-serif'>AMERICAN FOOTBALL ABROAD</text></svg>" alt="Peanuts & Egos Book Cover">
+                    </div>
+                    <div class="book-info">
+                        <h2>The Phantom City Playbook</h2>
+                        <p class="release-date">Available October 9, 2025</p>
+                        <p><strong>"There's a sucker at every poker table, and if you can't figure out who it is after the first hand, it's you."</strong></p>
+                        <p>When former NFL player Denauld Brown arrived in Bielefeld, Germany—a city locals joke "doesn't exist"—he entered a high-stakes game where X's and O's took a backseat to egos and politics.</p>
+                        <p>Facing a club president with a hidden agenda, a former coach plotting his return, and a team divided by loyalty and culture, Brown discovered that surviving in international football required more than tactical knowledge—it demanded mastering the unwritten rules of a game few Americans understood.</p>
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-primary">Pre-Order on Amazon</a>
+                            <a href="#" onclick="showPage('content')" class="btn btn-secondary">Read Exclusive Previews</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 class="section-title" style="color: #333;">Behind the Poker Metaphor</h3>
+                    <div class="content-grid">
+                        <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
+                            <h3 style="color: #e39640;">The Opening Hand</h3>
+                            <p>"THE BLUFF: How a club president's public support masked a calculated plan to undermine my authority from day one."</p>
+                        </div>
+                        <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
+                            <h3 style="color: #e39640;">The Middle Game</h3>
+                            <p>"READING THE TELLS: In international football, just like in poker, reading the invisible signals is more valuable than any playbook."</p>
+                        </div>
+                        <div class="content-card" style="background: rgba(0,0,0,0.05); color: #333;">
+                            <h3 style="color: #e39640;">The Final Count</h3>
+                            <p>"GOING ALL IN: The pivotal decision to start 19-year-old Niklas Garry wasn't just a football choice—it was pushing all my chips to the center of the table."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Page -->
+    <section id="content" class="page-section">
+        <div class="content-section dark">
+            <div class="container">
+                <h2 class="section-title">Join the Conversation</h2>
+                <div class="content-hub">
+                    <div class="platform-card">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Substack Newsletter</h3>
+                        <p>Exclusive content & chapter previews. Get behind-the-scenes insights and strategic analysis unavailable anywhere else.</p>
+                        <div class="embed-container">
+                            <iframe src="https://peanutsandegos.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white; border-radius: 10px;" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <i class="fab fa-youtube"></i>
+                        <h3>YouTube Channel</h3>
+                        <p>International football analysis & interviews. Watch exclusive episodes featuring NFL Europe veterans and coaching insights.</p>
+                        <div class="embed-container">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/videoseries?list=PLrAXtmRdnEQeiGGTJ6_HggqeQNdkQ-gRF" title="Peanuts & Egos Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
+                        </div>
+                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">Subscribe on YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 class="section-title">What We Deliver</h3>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3><i class="fas fa-microphone"></i> Exclusive Interviews</h3>
+                            <p>NFL Europe veterans and international football pioneers share their untold stories.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-chart-bar"></i> Strategic Analysis</h3>
+                            <p>Expert breakdown of the NFL's global expansion initiatives and international development.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-globe"></i> Cultural Chronicles</h3>
+                            <p>How American football adapts across different countries and cultures.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3><i class="fas fa-chalkboard-teacher"></i> Technical Breakdowns</h3>
+                            <p>International playing styles and coaching philosophies from a veteran perspective.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Page -->
+    <section id="connect" class="page-section">
+        <div class="content-section gray">
+            <div class="container">
+                <h2 class="section-title">Connect With Us</h2>
+                <div class="content-section dark" style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 3rem;">
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <h3 style="color: var(--primary-orange); margin-bottom: 2rem;">The Final Hand Awaits</h3>
+                        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Every leader faces their own phantom city – a place where the visible game masks the invisible one. Your next chapter begins October 9, 2025.</p>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-orange); margin-top: 2rem;">"ANTE UP"</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://peanutsandegos.substack.com" target="_blank" title="Substack Newsletter">
+                            <i class="fas fa-newspaper"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" title="YouTube Channel">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/peanutsandegos" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/profile.php?id=61575224906188" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD" target="_blank" title="Spotify Podcast">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <h4 style="color: var(--primary-orange); margin-bottom: 1rem;">Stay Connected</h4>
+                        <p>Follow our social media channels and subscribe to our newsletter for the latest updates on international football and exclusive book content.</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <p style="font-style: italic; color: var(--light-gray);">
+                            Remember: In international football, the peanuts are small, but the egos? They span continents.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>PEANUTS & EGOS</h3>
+                    <p>Where American football dreams meet European reality</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://peanutsandegos.substack.com" target="_blank" title="Substack Newsletter">
+                            <i class="fas fa-newspaper"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" title="YouTube Channel">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/peanutsandegos" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/profile.php?id=61575224906188" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD" target="_blank" title="Spotify Podcast">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-info">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" onclick="showPage('book')">Pre-Order Book</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Denauld</a></li>
+                        <li><a href="#" onclick="showPage('content')">Latest Content</a></li>
+                        <li><a href="https://peanutsandegos.substack.com" target="_blank">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
+                <p style="margin-top: 1rem; color: var(--brand-gray);">
+                    Based on the upcoming book by Denauld Brown - October 2025
+                </p>
+                <p style="font-style: italic; color: var(--primary-orange); margin-top: 1rem;">
+                    "The peanuts are small, but the egos? They span continents."
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate current nav link
+            const currentLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        });
+        
+        // Smooth scroll for internal links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Add scroll effect to hero
+        window.addEventListener('scroll', function() {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+
+    <!-- 
+    ============================================
+    IMAGE REPLACEMENT GUIDE
+    ============================================
+    
+    TO REPLACE PLACEHOLDERS WITH REAL IMAGES:
+    
+    1. BOOK COVER (Line ~460):
+       Find: src="data:image/svg+xml,<svg..."
+       Replace with: src="images/book-cover.jpg"
+    
+    2. PROFILE PHOTO (Line ~480):
+       Find: src="data:image/svg+xml,<svg..."  
+       Replace with: src="images/denauld-brown.jpg"
+    
+    3. HERO BACKGROUND (Line ~190):
+       This is your PERFECT hero image with all the branding built-in
+       Current: url('images/peanuts-egos-hero.jpg')
+       Upload your hero image with this exact filename
+       No changes needed - image contains all branding elements
+    
+    RECOMMENDED FOLDER STRUCTURE:
+    /
+    ├── index.html
+    ├── images/
+    │   ├── book-cover.jpg (600x900px)
+    │   ├── denauld-brown.jpg (400x400px)
+    │   ├── peanuts-egos-hero.jpg (YOUR PERFECT HERO IMAGE!)
+    │   └── [additional images]
+    
+    ============================================
+    -->
+</body>
+</html>
