@@ -120,6 +120,31 @@
             animation: socialFloat 3s ease-in-out infinite;
         }
 
+        .enter-site-btn {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: buttonFloat 3s ease-in-out infinite;
+        }
+
+        .enter-site-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(227,150,64,0.4);
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
         .social-icon {
             width: 40px;
             height: 40px;
@@ -232,13 +257,28 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
         }
         
-        .nav-spacer {
+        .nav-brand {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-brand:hover {
+            color: var(--brand-red);
+            transform: scale(1.05);
+        }
+        
+        .nav-center {
             flex: 1;
+            display: flex;
+            justify-content: center;
         }
         
         .nav-links {
@@ -834,23 +874,19 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-container {
-                justify-content: space-between;
-            }
-            
-            .nav-spacer {
-                display: none;
-            }
-            
-            .nav-links {
-                display: none;
+            .nav-center {
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
                 background: rgba(0,0,0,0.95);
-                flex-direction: column;
                 padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
             }
             
             .nav-links.show {
@@ -874,6 +910,11 @@
             .loading-subtitle {
                 font-size: 1rem;
                 margin-bottom: 2rem;
+            }
+
+            .enter-site-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
             }
 
             .book-showcase,
@@ -905,7 +946,7 @@
     </style>
 </head>
 <body>
-    <!-- LOADING SCREEN - PERMANENT SPLASH PAGE -->
+    <!-- LOADING SCREEN - PERMANENT LANDING PAGE -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">PEANUTS & EGOS</div>
         <div class="loading-brand-logo">
@@ -920,6 +961,9 @@
         <div class="loading-progress">
             <div class="loading-bar"></div>
         </div>
+        <button class="enter-site-btn" onclick="enterSite()">
+            <i class="fas fa-play"></i> ENTER SITE
+        </button>
         <div class="social-preview">
             <div class="social-icon"><i class="fas fa-newspaper"></i></div>
             <div class="social-icon"><i class="fab fa-youtube"></i></div>
@@ -944,14 +988,18 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="nav-spacer"></div>
-            <ul class="nav-links">
-                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
-                <li><a href="#" onclick="showPage('about')">About</a></li>
-                <li><a href="#" onclick="showPage('book')">The Book</a></li>
-                <li><a href="#" onclick="showPage('content')">Content</a></li>
-                <li><a href="#" onclick="showPage('connect')">Connect</a></li>
-            </ul>
+            <div class="nav-brand" onclick="backToLanding()" title="Back to Landing">
+                P&E
+            </div>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('book')">The Book</a></li>
+                    <li><a href="#" onclick="showPage('content')">Content</a></li>
+                    <li><a href="#" onclick="showPage('connect')">Connect</a></li>
+                </ul>
+            </div>
             <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -1211,8 +1259,15 @@
     </footer>
 
     <script>
-        // LOADING SCREEN - PERMANENT (No auto-hide)
-        // The loading screen stays visible as a splash page
+        // ENTER SITE FUNCTION - Hide landing page and show main site
+        function enterSite() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }
+
+        // BACK TO LANDING - Show landing page again
+        function backToLanding() {
+            document.getElementById('loadingScreen').classList.remove('hidden');
+        }
 
         function showPage(pageId) {
             // Hide all pages
