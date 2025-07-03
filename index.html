@@ -422,6 +422,24 @@
             animation: heroNavSlideUp 1s ease-out 0.5s both;
         }
 
+        /* HERO IMAGE SECTION */
+        .hero-image-section {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .hero-main-image {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+            animation: heroImageFloat 6s ease-in-out infinite;
+        }
+
         .hero-subtitle {
             color: var(--white);
             font-size: 1.2rem;
@@ -834,6 +852,11 @@
             50% { transform: translateY(-5px) rotate(5deg); }
         }
 
+        @keyframes heroImageFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
         @keyframes floatUnison {
             0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
             33% { transform: translateY(-20px) translateX(10px) scale(1.05); }
@@ -955,18 +978,8 @@
                 margin-bottom: 2rem;
             }
 
-            .hero-tagline {
-                margin: 2rem;
-                padding: 1.5rem;
-            }
-
-            .hero-tagline h2 {
-                font-size: 1.2rem;
-            }
-
-            .hero-enter-btn {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
+            .hero-main-image {
+                animation: none; /* Disable float animation on mobile for performance */
             }
 
             .book-showcase,
@@ -1022,16 +1035,6 @@
         </div>
     </div>
 
-    <!-- HERO LANDING PAGE -->
-    <div class="hero-landing" id="heroLanding" style="background-image: url('peanuts-egos-hero.jpg');">
-        <div class="hero-tagline">
-            <h2>"The peanuts are small, but the egos? They span continents."</h2>
-            <button class="hero-enter-btn" onclick="enterMainSite()">
-                <i class="fas fa-football-ball"></i> EXPLORE THE STORY
-            </button>
-        </div>
-    </div>
-
     <!-- FLOATING BACKGROUND ELEMENTS -->
     <div class="floating-bg">
         <div class="floating-element"></div>
@@ -1077,6 +1080,11 @@
                     <a href="#" onclick="showPage('content')" class="btn btn-secondary">Watch Latest Episodes</a>
                 </div>
             </div>
+        </div>
+        
+        <!-- HERO IMAGE SECTION -->
+        <div class="hero-image-section">
+            <img src="peanuts-egos-hero.jpg" alt="Peanuts & Egos - The World Between The Lines" class="hero-main-image">
         </div>
         
         <div class="content-section dark">
@@ -1314,29 +1322,17 @@
     </footer>
 
     <script>
-        // AUTO TRANSITION: Loading Screen → Hero Landing (IMMEDIATE)
+        // AUTO TRANSITION: Loading Screen → Main Site (NO POPUP)
         window.addEventListener('load', function() {
-            // Test if image exists
-            const img = new Image();
-            img.onload = function() {
-                console.log('Hero image loaded successfully');
-            };
-            img.onerror = function() {
-                console.error('Hero image failed to load: peanuts-egos-hero.jpg');
-            };
-            img.src = 'peanuts-egos-hero.jpg';
-            
-            // After loading bar completes (3 seconds), immediately show hero landing
+            // After loading bar completes (3 seconds), go directly to main site
             setTimeout(function() {
                 document.getElementById('loadingScreen').classList.add('hidden');
-                document.getElementById('heroLanding').classList.add('active');
-                console.log('Transitioning to hero landing page');
             }, 3000);
         });
 
-        // ENTER MAIN SITE from hero landing
+        // ENTER MAIN SITE - No longer needed, goes directly
         function enterMainSite() {
-            document.getElementById('heroLanding').classList.add('hidden');
+            // Function kept for compatibility but not used
         }
 
         // BACK TO LANDING - Show loading screen again
