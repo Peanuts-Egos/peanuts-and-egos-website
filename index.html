@@ -120,8 +120,50 @@
             animation: socialFloat 3s ease-in-out infinite;
         }
 
-        .enter-site-btn {
-            margin-top: 3rem;
+        /* HERO LANDING PAGE */
+        .hero-landing {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('peanuts-egos-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 9000;
+            transition: opacity 1s ease-out;
+        }
+
+        .hero-landing.active {
+            display: flex;
+        }
+
+        .hero-landing.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero-tagline {
+            background: rgba(0,0,0,0.8);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-orange);
+        }
+
+        .hero-tagline h2 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .hero-enter-btn {
             padding: 1rem 2rem;
             background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
             color: var(--white);
@@ -134,7 +176,7 @@
             animation: buttonFloat 3s ease-in-out infinite;
         }
 
-        .enter-site-btn:hover {
+        .hero-enter-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(227,150,64,0.4);
         }
@@ -346,7 +388,7 @@
             padding: 0 2rem;
         }
         
-        /* Hero Section */
+        /* Hero Section - Now used in Hero Landing Page */
         .hero {
             background: url('peanuts-egos-hero.jpg');
             background-size: cover;
@@ -912,7 +954,16 @@
                 margin-bottom: 2rem;
             }
 
-            .enter-site-btn {
+            .hero-tagline {
+                margin: 2rem;
+                padding: 1.5rem;
+            }
+
+            .hero-tagline h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero-enter-btn {
                 font-size: 1rem;
                 padding: 0.8rem 1.5rem;
             }
@@ -946,7 +997,7 @@
     </style>
 </head>
 <body>
-    <!-- LOADING SCREEN - PERMANENT LANDING PAGE -->
+    <!-- LOADING SCREEN - AUTO TRANSITIONS TO HERO -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-logo">PEANUTS & EGOS</div>
         <div class="loading-brand-logo">
@@ -961,15 +1012,22 @@
         <div class="loading-progress">
             <div class="loading-bar"></div>
         </div>
-        <button class="enter-site-btn" onclick="enterSite()">
-            <i class="fas fa-play"></i> ENTER SITE
-        </button>
         <div class="social-preview">
             <div class="social-icon"><i class="fas fa-newspaper"></i></div>
             <div class="social-icon"><i class="fab fa-youtube"></i></div>
             <div class="social-icon"><i class="fab fa-instagram"></i></div>
             <div class="social-icon"><i class="fab fa-facebook"></i></div>
             <div class="social-icon"><i class="fab fa-spotify"></i></div>
+        </div>
+    </div>
+
+    <!-- HERO LANDING PAGE -->
+    <div class="hero-landing" id="heroLanding">
+        <div class="hero-tagline">
+            <h2>"The peanuts are small, but the egos? They span continents."</h2>
+            <button class="hero-enter-btn" onclick="enterMainSite()">
+                <i class="fas fa-football-ball"></i> EXPLORE THE STORY
+            </button>
         </div>
     </div>
 
@@ -1007,11 +1065,7 @@
     </nav>
 
     <!-- Home Page -->
-    <section id="home" class="page-section active">
-        <div class="hero">
-            <!-- Hero image contains all branding - no text overlay needed -->
-        </div>
-        
+    <section id="home" class="page-section active">        
         <div class="hero-navigation">
             <div class="container">
                 <p class="hero-subtitle">
@@ -1128,7 +1182,7 @@
                         <p>International football analysis & interviews. Watch exclusive episodes featuring NFL Europe veterans and coaching insights.</p>
                         <div class="embed-container">
                             <div class="youtube-embed">
-                                <iframe width="100%" height="200" src="https://www.youtube.com/embed/VwQjbOdyNWw" title="Peanuts & Egos Latest Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
+                                <iframe width="100%" height="320" src="https://www.youtube.com/embed/VwQjbOdyNWw" title="Peanuts & Egos Latest Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
                             </div>
                         </div>
                         <a href="https://www.youtube.com/@peanutsandegos" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">Subscribe on YouTube</a>
@@ -1259,14 +1313,25 @@
     </footer>
 
     <script>
-        // ENTER SITE FUNCTION - Hide landing page and show main site
-        function enterSite() {
-            document.getElementById('loadingScreen').classList.add('hidden');
+        // AUTO TRANSITION: Loading Screen → Hero Landing → Main Site
+        window.addEventListener('load', function() {
+            // After 4 seconds, transition from loading screen to hero landing
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                document.getElementById('heroLanding').classList.add('active');
+            }, 4000);
+        });
+
+        // ENTER MAIN SITE from hero landing
+        function enterMainSite() {
+            document.getElementById('heroLanding').classList.add('hidden');
         }
 
-        // BACK TO LANDING - Show landing page again
+        // BACK TO LANDING - Show loading screen again
         function backToLanding() {
             document.getElementById('loadingScreen').classList.remove('hidden');
+            document.getElementById('heroLanding').classList.remove('active');
+            document.getElementById('heroLanding').classList.remove('hidden');
         }
 
         function showPage(pageId) {
