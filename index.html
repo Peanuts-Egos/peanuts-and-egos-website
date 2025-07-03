@@ -1095,14 +1095,14 @@
         <!-- HERO IMAGE SECTION -->
         <div class="hero-image-section">
             <!-- Method 1: IMG tag with cache busting -->
-            <img src="peanuts-egos-hero.jpg?v=1" 
+            <img src="peanuts-egos-hero.png?v=1" 
                  alt="Peanuts & Egos - The World Between The Lines" 
                  class="hero-main-image"
                  onerror="this.style.display='none'; document.querySelector('.hero-bg-fallback').style.display='block';"
-                 onload="console.log('Hero image loaded successfully');">
+                 onload="console.log('Hero PNG image loaded successfully');">
             
             <!-- Method 2: Background Image Fallback -->
-            <div class="hero-bg-fallback" style="display: none; background: url('peanuts-egos-hero.jpg?v=1') center/cover no-repeat; width: 100%; height: 500px; border-radius: 10px; animation: heroImageFloat 6s ease-in-out infinite;"></div>
+            <div class="hero-bg-fallback" style="display: none; background: url('peanuts-egos-hero.png?v=1') center/cover no-repeat; width: 100%; height: 500px; border-radius: 10px; animation: heroImageFloat 6s ease-in-out infinite;"></div>
         </div>
         
         <div class="content-section dark">
@@ -1351,50 +1351,50 @@
             setTimeout(debugHeroImage, 500);
         });
 
-        // FORCE REFRESH HERO IMAGE (for testing)
+        // FORCE REFRESH HERO IMAGE (for testing) - Updated for PNG
         function forceRefreshHeroImage() {
             const mainImg = document.querySelector('.hero-main-image');
             const fallback = document.querySelector('.hero-bg-fallback');
             
             if (mainImg) {
-                mainImg.src = 'peanuts-egos-hero.jpg?v=' + Date.now();
+                mainImg.src = 'peanuts-egos-hero.png?v=' + Date.now();
                 mainImg.style.display = 'block';
                 if (fallback) fallback.style.display = 'none';
-                console.log('🔄 Force refreshing hero image...');
+                console.log('🔄 Force refreshing hero PNG image...');
             }
         }
 
-        // DEBUG HERO IMAGE FUNCTION - Simplified
+        // DEBUG HERO IMAGE FUNCTION - Updated for PNG
         function debugHeroImage() {
-            console.log('🔍 Testing hero image: peanuts-egos-hero.jpg');
+            console.log('🔍 Testing hero image: peanuts-egos-hero.png');
             
-            // Test the exact file we know exists
+            // Test the new PNG file
             const img = new Image();
             img.onload = function() {
-                console.log('✅ Hero image loaded successfully!');
+                console.log('✅ Hero PNG image loaded successfully!');
                 console.log('Image dimensions:', this.naturalWidth, 'x', this.naturalHeight);
             };
             img.onerror = function() {
-                console.error('❌ Hero image failed to load');
+                console.error('❌ Hero PNG image failed to load');
                 console.log('🔄 Trying cache-busted version...');
                 
                 // Try cache-busted version
                 const img2 = new Image();
                 img2.onload = function() {
-                    console.log('✅ Cache-busted hero image loaded!');
+                    console.log('✅ Cache-busted hero PNG image loaded!');
                     // Force reload the main image
                     const mainImg = document.querySelector('.hero-main-image');
                     if (mainImg) {
-                        mainImg.src = 'peanuts-egos-hero.jpg?v=' + Date.now();
+                        mainImg.src = 'peanuts-egos-hero.png?v=' + Date.now();
                     }
                 };
                 img2.onerror = function() {
-                    console.error('❌ Cache-busted version also failed');
-                    console.log('💡 Try: Hard refresh (Ctrl+F5) or check if GitHub Pages deployed');
+                    console.error('❌ Cache-busted PNG version also failed');
+                    console.log('💡 Try: Hard refresh (Ctrl+F5) or check if GitHub Pages deployed the PNG file');
                 };
-                img2.src = 'peanuts-egos-hero.jpg?v=' + Date.now();
+                img2.src = 'peanuts-egos-hero.png?v=' + Date.now();
             };
-            img.src = 'peanuts-egos-hero.jpg';
+            img.src = 'peanuts-egos-hero.png';
         }
 
         // ENTER MAIN SITE - No longer needed, goes directly
