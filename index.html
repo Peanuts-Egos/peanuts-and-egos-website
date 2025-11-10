@@ -1,5 +1,4 @@
-<!-- Load Tailwind CSS and Inter font -->
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Load Tailwind CSS and Inter font --><script src="https://cdn.tailwindcss.com"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
   :root {
@@ -33,8 +32,7 @@
 
 <div id="app" class="min-h-screen flex flex-col">
 
-  <!-- Header/Navigation: Sticky at the top -->
-  <header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
+  <!-- Header/Navigation: Sticky at the top --><header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight">
         <span class="text-[var(--color-primary-accent)]">P&E</span>
@@ -49,17 +47,13 @@
     </div>
   </header>
 
-  <!-- Hero Section / Book CTA (Promoting the new concept) -->
-  <section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
+  <!-- Hero Section / Book CTA (Promoting the new concept) --><section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-      <!-- Image Placeholder for Book Cover -->
-      <div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
-        <!-- Using a placeholder image with the new Black/Red/Copper colors for aesthetic continuity -->
-        <img src="https://placehold.co/400x600/010101/ee0e21?text=PEANUTS+%26+EGOS%0A%0ABook+2+Guide" alt="Peanuts & Egos Book 2 Cover" class="w-full h-full object-cover">
+      <!-- ACTUAL IMAGE for Book 2 Cover --><div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
+        <img src="https://i.ibb.co/L5tN0y2/Peanuts-Egos-Munich-Cover.jpg" alt="Peanuts & Egos Munich Book Cover" class="w-full h-full object-cover">
       </div>
 
-      <!-- Text Content -->
-      <div class="lg:max-w-3xl text-center lg:text-left">
+      <!-- Text Content --><div class="lg:max-w-3xl text-center lg:text-left">
         <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Book Two Announcement</p>
         <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
           A Guide: American Football in the German Club System
@@ -74,37 +68,42 @@
     </div>
   </section>
 
-  <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) --><main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-    <!-- YouTube Feed -->
-    <section id="youtube-feed" class="lg:col-span-2">
+    <!-- YouTube Feed --><section id="youtube-feed" class="lg:col-span-2">
       <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h3>
       <div id="youtube-list" class="space-y-6">
-        <!-- YouTube content cards will be injected here by JavaScript -->
-      </div>
+        <!-- YouTube content cards will be injected here by JavaScript --></div>
       <div class="mt-8 text-center">
-        <!-- REAL YOUTUBE CHANNEL LINK -->
-        <a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+        <!-- REAL YOUTUBE CHANNEL LINK --><a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
       </div>
     </section>
 
-    <!-- Substack Feed -->
-    <section id="substack-feed" class="lg:col-span-1">
-      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Teasers & Podcast)</h3>
-      <div id="substack-list" class="space-y-6">
-        <!-- Substack content cards will be injected here by JavaScript -->
+    <!-- Substack Feed --><section id="substack-feed" class="lg:col-span-1">
+      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Subscribe)</h3>
+      
+      <!-- Substack Subscribe Embed --><div class="flex justify-center bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg">
+        <!-- Iframe attributes adjusted for responsive width (100% of container) --><iframe 
+          src="https://peanutsandegos.substack.com/embed" 
+          width="100%" 
+          height="320" 
+          style="border:1px solid #EEE; background:white;" 
+          frameborder="0" 
+          scrolling="no"
+          class="max-w-md"
+        ></iframe>
       </div>
-      <div class="mt-8 text-center">
-        <!-- REAL SUBSTACK LINK -->
-        <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Read Teaser / Subscribe &rarr;</a>
+      <p class="text-center text-[var(--color-gray)] text-sm mt-4">
+        Sign up for exclusive content and podcast teasers!
+      </p>
+      <div class="mt-4 text-center">
+        <!-- Direct link fallback --><a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Visit Substack &rarr;</a>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
+  <!-- Footer --><footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--color-gray)]">
       <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
       <div class="mt-2 space-x-4">
@@ -118,30 +117,61 @@
 </div>
 
 <script>
-  // Mock Data for YouTube and Substack (Replace with your actual feeds/links)
-  const mockYouTubeVideos = [
-    { title: "GFL Week 10 Breakdown: Title Race Heats Up", date: "Oct 25, 2025", duration: "12:30", embedUrl: "https://www.youtube.com/embed/n42sJ_43EwQ" }, // Generic placeholder URL
-    { title: "Interview with a GFL Import: Life in Europe", date: "Oct 18, 2025", duration: "18:45", embedUrl: "https://www.youtube.com/embed/n42sJ_43EwQ" },
-    { title: "Club Finances: Peanuts or Profit? An analysis.", date: "Oct 10, 2025", duration: "15:10", embedUrl: "https://www.youtube.com/embed/n42sJ_43EwQ" },
+  // --- Video Utility Functions ---
+
+  // Helper to convert ISO 8601 duration (PT#M#S) to MM:SS or HH:MM:SS
+  function formatDuration(iso) {
+      if (!iso) return 'N/A';
+      const parts = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      if (!parts) return 'N/A';
+      const hours = parseInt(parts[1] || 0);
+      const minutes = parseInt(parts[2] || 0);
+      const seconds = parseInt(parts[3] || 0);
+
+      let formatted = '';
+      if (hours > 0) {
+          formatted += hours + ':';
+      }
+      // Ensure minutes is padded with a leading zero if hours are present, or if it's the start (MM:SS)
+      formatted += String(minutes).padStart(hours > 0 ? 2 : 1, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+      return formatted;
+  }
+
+  // Helper to format date from YYYY-MM-DD to Month Day, YYYY
+  function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  // --- Real Data from YouTube search for the 'peanutsandegos' channel ---
+  const rawYouTubeVideos = [
+    // Video 1: FROM THE TRENCHES: Longest and most substantial video
+    { title: "FROM THE TRENCHES: What the Players Really Saw in Bielefeld", date: "2025-09-01", video_length: "PT28M11S", video_id: "0ETKnf67JIg" },
+    // Video 2: Book Launch Announcement
+    { title: "Peanuts & Egos book launch on October 9, 2025 #PeanutsAndEgos", date: "2025-04-19", video_length: "PT1M", video_id: "N4jDddxyVKw" },
+    // Video 3: NFL's International Play Trailer
+    { title: "NFL's International Play: Déjà Vu or a Winning Formula?", date: "2024-11-13", video_length: "PT56S", video_id: "8ryneHO8tGg" },
   ];
 
-  const mockSubstackArticles = [
-    { title: "The Hidden Cost of 'Cheering': Fan Loyalty in the Vereinswesen", date: "Nov 5, 2025", summary: "Exploring the emotional and financial investment of German football fans, and how it differs from US sports fandom." },
-    { title: "Challenges: Why Contracts are Different in the GFL", date: "Oct 29, 2025", summary: "A deep dive into the legal and cultural differences of player contracts between the NFL/CFL and the GFL system." },
-    { title: "The President's Desk: An American Coach's Perspective", date: "Oct 22, 2025", summary: "Exclusive commentary on the dynamic between US coaches and German club presidents, featuring insights from Werner." },
-  ];
+  const youtubeVideos = rawYouTubeVideos.map(video => ({
+      title: video.title,
+      date: formatDate(video.date),
+      duration: formatDuration(video.video_length),
+      // YouTube embed URL format is 'https://www.youtube.com/embed/[video_id]'
+      embedUrl: `https://www.youtube.com/embed/${video.video_id}`
+  }));
+
+  // Removed mockSubstackArticles as the Substack content is now static (iframe)
 
   function renderContent() {
     const youtubeList = document.getElementById('youtube-list');
-    const substackList = document.getElementById('substack-list');
+    // Note: substackList and related rendering code have been removed since the embed is now static HTML.
 
-    // --- Render YouTube Videos ---
-    // Note: Swapping card background to --color-content-bg (#f5f5f5) and text to --color-dark (#010101) for contrast
-    youtubeList.innerHTML = mockYouTubeVideos.map(video => `
+    // --- Render YouTube Videos (using real data) ---
+    youtubeList.innerHTML = youtubeVideos.map(video => `
       <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
-        <!-- Video Embed/Placeholder -->
-        <div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
-          <!-- NOTE: The embedUrl here is a placeholder. Replace it with your actual YouTube embed links. -->
+        <!-- Video Embed/Placeholder --><div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
           <iframe 
             class="w-full h-full"
             src="${video.embedUrl}" 
@@ -152,29 +182,14 @@
           </iframe>
         </div>
         
-        <!-- Video Details -->
-        <div class="md:w-1/2 flex flex-col justify-between">
+        <!-- Video Details --><div class="md:w-1/2 flex flex-col justify-between">
           <div>
             <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${video.title}</h4>
-            <p class="text-sm text-[var(--color-primary-accent)] font-medium">${video.duration}</p>
+            <p class="text-sm text-[var(--color-primary-accent)] font-medium">Duration: ${video.duration}</p>
           </div>
           <p class="text-sm text-[var(--color-gray)] mt-2 md:mt-0">Published: ${video.date}</p>
         </div>
       </div>
-    `).join('');
-
-
-    // --- Render Substack Articles ---
-    // Note: Swapping card background to --color-content-bg (#f5f5f5) and text to --color-dark (#010101) for contrast
-    substackList.innerHTML = mockSubstackArticles.map(article => `
-      <a href="https://peanutsandegos.substack.com/" target="_blank" class="content-card bg-[var(--color-content-bg)] p-5 rounded-xl shadow-lg transition duration-300 block">
-        <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${article.title}</h4>
-        <p class="text-[var(--color-gray)] text-sm mb-3">${article.summary}</p>
-        <div class="flex justify-between items-center">
-          <span class="text-xs text-[var(--color-primary-accent)] font-medium">Read Teaser / Subscribe &rarr;</span>
-          <span class="text-xs text-[var(--color-gray)]">Published: ${article.date}</span>
-        </div>
-      </a>
     `).join('');
   }
 
