@@ -1,4 +1,5 @@
-<!-- Load Tailwind CSS and Inter font --><script src="https://cdn.tailwindcss.com"></script>
+<!-- Load Tailwind CSS and Inter font -->
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
   :root {
@@ -12,9 +13,7 @@
   }
   body {
     font-family: 'Inter', sans-serif;
-    /* Inverted: White background */
     background-color: var(--color-light); 
-    /* Inverted: Dark text */
     color: var(--color-dark); 
   }
   .content-card {
@@ -32,83 +31,172 @@
 
 <div id="app" class="min-h-screen flex flex-col">
 
-  <!-- Header/Navigation: Sticky at the top --><header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
+  <!-- Header/Navigation: Sticky at the top -->
+  <header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight">
+      <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight cursor-pointer" onclick="showPage('home-page')">
         <span class="text-[var(--color-primary-accent)]">P&E</span>
         <span class="hidden sm:inline"> | Peanuts & Egos</span>
       </h1>
       <nav class="space-x-4">
-        <a href="#book-info" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide</a>
+        <!-- New navigation links for internal routing -->
+        <button onclick="showPage('guide-page')" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide (Book 2)</button>
+        
+        <!-- Existing links that remain on the Home Page -->
         <a href="#youtube-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
         <a href="#substack-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
+        
+        <!-- Primary CTA for Book 1 -->
         <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="bg-[var(--color-secondary-accent)] text-[var(--color-dark)] px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition duration-150">Buy Book 1</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section / Book CTA (Promoting the new concept) --><section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-      <!-- ACTUAL IMAGE for Book 2 Cover --><div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
-        <img src="https://i.ibb.co/L5tN0y2/Peanuts-Egos-Munich-Cover.jpg" alt="Peanuts & Egos Munich Book Cover" class="w-full h-full object-cover">
-      </div>
+  <!-- === HOME PAGE CONTENT (Book 1, YouTube, Substack) === -->
+  <div id="home-page" class="page-content flex-grow">
+    
+    <!-- Hero Section / Book 1 CTA (Permanent Home Page Feature) -->
+    <section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+        <!-- Book 1 Image Placeholder -->
+        <div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
+          <img 
+            src="https://placehold.co/400x600/010101/ffffff?text=PEANUTS+%26+EGOS%0A%0ABook+1" 
+            alt="Peanuts & Egos Book 1 Cover" 
+            class="w-full h-full object-cover"
+            onerror="this.onerror=null;this.src='https://placehold.co/400x600/010101/ffffff?text=PEANUTS+%26+EGOS%0A%0ABook+1'"
+          >
+        </div>
 
-      <!-- Text Content --><div class="lg:max-w-3xl text-center lg:text-left">
-        <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Book Two Announcement</p>
-        <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
-          A Guide: American Football in the German Club System
-        </h2>
-        <p class="text-xl text-[var(--color-gray)] mb-8">
-          Challenges, chances, and cheering. The book goes deep into the Vereinsführung (Club Leadership) of the Munich Cowboys, explained by the German Club President and his former American Head Coach.
+        <!-- Text Content: UPDATED WITH NEW BLURB -->
+        <div class="lg:max-w-3xl text-center lg:text-left">
+          <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Available Now</p>
+          <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
+            Peanuts & Egos: Touchdowns, Triumphs, and Turmoil in the GFL
+          </h2>
+          <!-- QUOTE -->
+          <p class="text-2xl text-[var(--color-primary-accent)] font-semibold italic mb-6">
+            "There's a sucker at every poker table, and if you can't figure out who it is after the first hand, it's you."
+          </p>
+          <!-- FULL BLURB - Added text-justify class -->
+          <p class="text-xl text-[var(--color-gray)] mb-8 text-justify">
+            Former NFL player Denauld Brown thought he was joining a German football club. Instead, he walked into a high-stakes political war where American imports sabotage crucial games, board members secretly record his every move, and the club president orchestrates his downfall with Machiavellian precision. In Bielefeld—a city Germans joke "doesn't exist"—Brown discovers that coaching means more than X's and O's. It means reading the tells of those plotting against you, building alliances in shadows, and surviving systematic surveillance designed to document your failure. When his own players deliberately drop passes in front of hostile crowds, Brown realizes he's not just fighting for wins—he's fighting for survival.
+          </p>
+          <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="inline-block bg-[var(--color-secondary-accent)] text-[var(--color-dark)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transform hover:scale-105 transition duration-300">
+            Buy Book 1 on Amazon
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- YouTube Feed -->
+      <section id="youtube-feed" class="lg:col-span-2">
+        <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h3>
+        <div id="youtube-list" class="space-y-6">
+          <!-- YouTube content cards will be injected here by JavaScript -->
+        </div>
+        <div class="mt-8 text-center">
+          <!-- REAL YOUTUBE CHANNEL LINK -->
+          <a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+        </div>
+      </section>
+
+      <!-- Substack Feed -->
+      <section id="substack-feed" class="lg:col-span-1">
+        <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Subscribe)</h3>
+        
+        <!-- Substack Subscribe Embed -->
+        <div class="flex justify-center bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg">
+          <!-- Iframe attributes adjusted for responsive width (100% of container) -->
+          <iframe 
+            src="https://peanutsandegos.substack.com/embed" 
+            width="100%" 
+            height="320" 
+            style="border:1px solid #EEE; background:white;" 
+            frameborder="0" 
+            scrolling="no"
+            class="max-w-md"
+          ></iframe>
+        </div>
+        <p class="text-center text-[var(--color-gray)] text-sm mt-4">
+          Sign up for exclusive content and podcast teasers!
         </p>
-        <a href="#" class="inline-block bg-[var(--color-secondary-accent)] text-[var(--color-dark)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transform hover:scale-105 transition duration-300">
-          Pre-Order Now (Coming Soon)
-        </a>
-      </div>
-    </div>
-  </section>
+        <div class="mt-4 text-center">
+          <!-- Direct link fallback -->
+          <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Visit Substack &rarr;</a>
+        </div>
+      </section>
 
-  <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) --><main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-    <!-- YouTube Feed --><section id="youtube-feed" class="lg:col-span-2">
-      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h3>
-      <div id="youtube-list" class="space-y-6">
-        <!-- YouTube content cards will be injected here by JavaScript --></div>
-      <div class="mt-8 text-center">
-        <!-- REAL YOUTUBE CHANNEL LINK --><a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
-      </div>
-    </section>
-
-    <!-- Substack Feed --><section id="substack-feed" class="lg:col-span-1">
-      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Subscribe)</h3>
+    </main>
+  </div>
+  
+  <!-- === GUIDE PAGE CONTENT (Dedicated Book 2 Pre-Sale Page) === -->
+  <div id="guide-page" class="page-content hidden flex-grow">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
       
-      <!-- Substack Subscribe Embed --><div class="flex justify-center bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg">
-        <!-- Iframe attributes adjusted for responsive width (100% of container) --><iframe 
-          src="https://peanutsandegos.substack.com/embed" 
-          width="100%" 
-          height="320" 
-          style="border:1px solid #EEE; background:white;" 
-          frameborder="0" 
-          scrolling="no"
-          class="max-w-md"
-        ></iframe>
+      <div class="text-center mb-12">
+        <h2 class="text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
+          The Guide: Peanuts & Egos in Munich
+        </h2>
+        <p class="text-2xl text-[var(--color-gray)]">
+          A definitive look at American Football in the German Club System (Coming Soon)
+        </p>
       </div>
-      <p class="text-center text-[var(--color-gray)] text-sm mt-4">
-        Sign up for exclusive content and podcast teasers!
-      </p>
-      <div class="mt-4 text-center">
-        <!-- Direct link fallback --><a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Visit Substack &rarr;</a>
+
+      <div class="flex flex-col lg:flex-row items-center gap-12 bg-[var(--color-content-bg)] p-8 md:p-12 rounded-2xl shadow-xl">
+        
+        <!-- Book 2 Image -->
+        <div class="w-full lg:w-1/3 flex justify-center">
+          <div class="w-64 h-96 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
+            <img 
+              src="https://i.ibb.co/L5tN0y2/Peanuts-Egos-Munich-Cover.jpg" 
+              alt="Peanuts & Egos Munich Book Cover" 
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/010101/ee0e21?text=PEANUTS+%26+EGOS%0A%0AGuide+Cover'"
+            >
+          </div>
+        </div>
+
+        <!-- Pre-Sale Details -->
+        <div class="lg:w-2/3 text-center lg:text-left">
+          <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-4">Pre-Sales Launching Soon</p>
+          <p class="text-xl text-[var(--color-dark)] mb-6 text-justify">
+            Dive deep into the structure, leadership, and cultural dynamics of running a top-tier GFL organization. This guide features unparalleled insights from the Munich Cowboys' German Club President and the American Head Coach on **Vereinsführung** (Club Leadership).
+          </p>
+          
+          <ul class="list-disc list-inside text-lg text-[var(--color-gray)] space-y-2 mb-8 inline-block text-left">
+            <li>Understanding the e.V. (Registered Association) model.</li>
+            <li>Board management and volunteer recruitment.</li>
+            <li>Strategic planning for import players and coaches.</li>
+            <li>Navigating cultural differences in team management.</li>
+          </ul>
+
+          <div class="bg-[var(--color-light)] p-6 rounded-xl shadow-inner border border-[var(--color-primary-accent)]/30">
+             <p class="text-2xl font-bold text-[var(--color-primary-accent)] mb-4">Don't Miss the Pre-Sale Window!</p>
+             <p class="text-lg text-[var(--color-dark)] mb-4">
+                 Sign up for our exclusive waitlist to be notified the moment pre-sales go live and receive a limited-time bonus chapter.
+             </p>
+             <!-- Mock Email Sign-up (Replace with your actual service form) -->
+             <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto lg:mx-0">
+                <input type="email" placeholder="Enter your email address" class="flex-grow p-3 rounded-lg border-2 border-[var(--color-gray)] focus:border-[var(--color-primary-accent)] outline-none" required>
+                <button type="submit" class="bg-[var(--color-primary-accent)] text-white font-bold p-3 rounded-lg hover:bg-opacity-90 transition duration-300">Join Waitlist</button>
+             </div>
+          </div>
+        </div>
       </div>
+      
     </section>
+  </div>
 
-  </main>
-
-  <!-- Footer --><footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
+  <!-- Footer -->
+  <footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--color-gray)]">
       <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
       <div class="mt-2 space-x-4">
-        <a href="#youtube-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">YouTube</a>
-        <a href="#substack-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Substack</a>
+        <button onclick="showPage('home-page')" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Home</button>
         <a href="mailto:contact@peanutsandegos.com" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Contact</a>
       </div>
     </div>
@@ -117,7 +205,32 @@
 </div>
 
 <script>
-  // --- Video Utility Functions ---
+  // --- Page Navigation Logic (Simple Router) ---
+  function showPage(pageId) {
+      document.querySelectorAll('.page-content').forEach(page => {
+          page.classList.add('hidden');
+      });
+      const pageToShow = document.getElementById(pageId);
+      if (pageToShow) {
+          pageToShow.classList.remove('hidden');
+          // Scroll to the top when changing pages
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      // If we are on the home page, scroll to the top of the main content area (to show the hero)
+      if (pageId === 'home-page') {
+          // Update the URL hash to allow linking/bookmarking, though content is still single file
+          window.location.hash = '';
+      } else if (pageId === 'guide-page') {
+          window.location.hash = '#guide';
+      }
+      
+      // Since the app starts on home, ensure all other pages are hidden first run
+      if (pageId === 'home-page' && document.getElementById('guide-page').classList.contains('hidden')) {
+          // Do nothing, already hidden
+      }
+  }
+
+  // --- Content Rendering Functions ---
 
   // Helper to convert ISO 8601 duration (PT#M#S) to MM:SS or HH:MM:SS
   function formatDuration(iso) {
@@ -132,7 +245,6 @@
       if (hours > 0) {
           formatted += hours + ':';
       }
-      // Ensure minutes is padded with a leading zero if hours are present, or if it's the start (MM:SS)
       formatted += String(minutes).padStart(hours > 0 ? 2 : 1, '0') + ':' +
                     String(seconds).padStart(2, '0');
       return formatted;
@@ -158,20 +270,17 @@
       title: video.title,
       date: formatDate(video.date),
       duration: formatDuration(video.video_length),
-      // YouTube embed URL format is 'https://www.youtube.com/embed/[video_id]'
       embedUrl: `https://www.youtube.com/embed/${video.video_id}`
   }));
 
-  // Removed mockSubstackArticles as the Substack content is now static (iframe)
-
   function renderContent() {
     const youtubeList = document.getElementById('youtube-list');
-    // Note: substackList and related rendering code have been removed since the embed is now static HTML.
 
     // --- Render YouTube Videos (using real data) ---
     youtubeList.innerHTML = youtubeVideos.map(video => `
       <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
-        <!-- Video Embed/Placeholder --><div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
+        <!-- Video Embed/Placeholder -->
+        <div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
           <iframe 
             class="w-full h-full"
             src="${video.embedUrl}" 
@@ -182,7 +291,8 @@
           </iframe>
         </div>
         
-        <!-- Video Details --><div class="md:w-1/2 flex flex-col justify-between">
+        <!-- Video Details -->
+        <div class="md:w-1/2 flex flex-col justify-between">
           <div>
             <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${video.title}</h4>
             <p class="text-sm text-[var(--color-primary-accent)] font-medium">Duration: ${video.duration}</p>
@@ -193,8 +303,15 @@
     `).join('');
   }
 
-  // Ensure content is rendered after the page loads
+  // Initialize page view and render content
   window.onload = function() {
     renderContent();
+    
+    // Check URL hash for initial page load
+    if (window.location.hash === '#guide') {
+        showPage('guide-page');
+    } else {
+        showPage('home-page');
+    }
   };
 </script>
