@@ -1,1497 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peanuts & Egos - The Untold Story of American Football Abroad</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #000;
-            overflow-x: hidden;
-        }
-        
-        :root {
-            --primary-orange: #e39640;
-            --brand-red: #ee0e21;
-            --brand-black: #010101;
-            --brand-gray: #838383;
-            --white: #ffffff;
-            --dark-bg: #1a1a1a;
-            --light-gray: #f4f4f4;
-        }
-
-        /* LOADING SCREEN - DYNAMIC & SOCIAL MEDIA FEEL - PERMANENT */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--brand-black), var(--dark-bg));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-
-        .loading-logo {
-            font-size: 4rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: pulseGlow 2s ease-in-out infinite;
-        }
-
-        .loading-brand-logo {
-            width: 150px;
-            height: 150px;
-            margin: 2rem 0;
-            animation: logoFloat 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(227,150,64,0.3));
-        }
-
-        .loading-brand-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .loading-subtitle {
-            color: var(--white);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.8;
-            animation: fadeSlideUp 2s ease-out;
-            font-style: italic;
-        }
-
-        .loading-animation {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .loading-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary-orange);
-            animation: loadingBounce 1.4s ease-in-out infinite both;
-        }
-
-        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
-        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
-        .loading-dot:nth-child(3) { animation-delay: 0s; }
-
-        .loading-progress {
-            width: 300px;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .loading-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-orange), var(--brand-red));
-            border-radius: 2px;
-            animation: loadingProgress 3s ease-out forwards;
-        }
-
-        .social-preview {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            animation: socialFloat 3s ease-in-out infinite;
-        }
-
-        /* HERO LANDING PAGE */
-        .hero-landing {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('peanuts-egos-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 9000;
-            transition: opacity 1s ease-out;
-        }
-
-        .hero-landing.active {
-            display: flex;
-        }
-
-        .hero-landing.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .hero-tagline {
-            background: rgba(0,0,0,0.8);
-            padding: 2rem 3rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 4rem;
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--primary-orange);
-        }
-
-        .hero-tagline h2 {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .hero-enter-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: buttonFloat 3s ease-in-out infinite;
-        }
-
-        .hero-enter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(227,150,64,0.4);
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            transform: scale(1.1);
-            pointer-events: none;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(227,150,64,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-orange);
-            font-size: 1.2rem;
-            animation: iconFloat 2s ease-in-out infinite;
-        }
-
-        .social-icon:nth-child(1) { animation-delay: 0s; }
-        .social-icon:nth-child(2) { animation-delay: 0.2s; }
-        .social-icon:nth-child(3) { animation-delay: 0.4s; }
-        .social-icon:nth-child(4) { animation-delay: 0.6s; }
-        .social-icon:nth-child(5) { animation-delay: 0.8s; }
-
-        /* FLOATING BACKGROUND ELEMENTS */
-        .floating-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, rgba(227,150,64,0.03), rgba(238,14,33,0.02));
-            animation: floatUnison 20s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 15%;
-            animation-delay: -5s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 60%;
-            animation-delay: -10s;
-        }
-
-        .floating-element:nth-child(4) {
-            width: 100px;
-            height: 100px;
-            top: 30%;
-            right: 40%;
-            animation-delay: -15s;
-        }
-
-        .floating-element:nth-child(5) {
-            width: 250px;
-            height: 250px;
-            bottom: 40%;
-            left: 20%;
-            animation-delay: -7s;
-        }
-
-        /* FLOWING BACKGROUND ANIMATION */
-        .flowing-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                rgba(227,150,64,0.01) 25%, 
-                transparent 50%, 
-                rgba(238,14,33,0.005) 75%, 
-                transparent 100%);
-            animation: flowBackground 30s linear infinite;
-            z-index: -2;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(0, 0, 0, 0.95);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(227,150,64,0.1);
-            animation: navSlideDown 1s ease-out;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .nav-brand {
-            color: var(--primary-orange);
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .nav-brand:hover {
-            color: var(--brand-red);
-            transform: scale(1.05);
-        }
-        
-        .nav-center {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-orange);
-            transition: all 0.3s;
-            transform: translateX(-50%);
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-orange);
-            background: rgba(227,150,64,0.1);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a:hover::before,
-        .nav-links a.active::before {
-            width: 80%;
-        }
-        
-        .mobile-menu {
-            display: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Page Sections */
-        .page-section {
-            display: none;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-        
-        .page-section.active {
-            display: block;
-            animation: pageSlideIn 0.8s ease-out;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        /* Hero Section - Now used in Hero Landing Page */
-        .hero {
-            background: url('peanuts-egos-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            color: var(--white);
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(227,150,64,0.1));
-            animation: heroOverlayPulse 8s ease-in-out infinite;
-        }
-        
-        .hero-navigation {
-            background: rgba(0,0,0,0.95);
-            padding: 2rem 0;
-            border-top: 2px solid var(--primary-orange);
-            backdrop-filter: blur(15px);
-            animation: heroNavSlideUp 1s ease-out 0.5s both;
-        }
-
-        /* HERO IMAGE SECTION */
-        .hero-image-section {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            min-height: 500px;
-            position: relative;
-        }
-
-        .hero-main-image {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-            min-height: 500px;
-            object-fit: cover;
-            display: block;
-            animation: heroImageFloat 6s ease-in-out infinite;
-        }
-
-        .hero-bg-fallback {
-            width: 100%;
-            height: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .hero-subtitle {
-            color: var(--white);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: textGlow 4s ease-in-out infinite;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-orange), var(--brand-red));
-            color: var(--white);
-            animation: buttonFloat 3s ease-in-out infinite;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(227,150,64,0.3);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--primary-orange);
-            animation: buttonFloat 3s ease-in-out infinite 0.5s;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary-orange);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(227,150,64,0.3);
-        }
-        
-        /* Content Sections */
-        .content-section {
-            padding: 4rem 0;
-            background: var(--white);
-            color: #333;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .content-section.dark {
-            background: var(--dark-bg);
-            color: var(--white);
-        }
-        
-        .content-section.gray {
-            background: var(--brand-gray);
-            color: var(--white);
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            text-align: left;
-            margin-bottom: 3rem;
-            color: var(--primary-orange);
-            animation: titleSlideIn 1s ease-out;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .content-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(227,150,64,0.3);
-            text-align: justify;
-            transition: all 0.3s;
-            animation: cardFloat 6s ease-in-out infinite;
-        }
-
-        .content-card:nth-child(1) { animation-delay: 0s; }
-        .content-card:nth-child(2) { animation-delay: 1s; }
-        .content-card:nth-child(3) { animation-delay: 2s; }
-        .content-card:nth-child(4) { animation-delay: 3s; }
-        
-        .content-card h3 {
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .content-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(227,150,64,0.2);
-            border-color: var(--primary-orange);
-        }
-        
-        /* Book Section */
-        .book-showcase {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-            margin: 4rem 0;
-        }
-        
-        .book-cover {
-            text-align: center;
-            animation: bookFloat 8s ease-in-out infinite;
-        }
-        
-        .book-cover img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-        }
-
-        .book-cover img:hover {
-            transform: scale(1.05) rotateY(5deg);
-            box-shadow: 0 30px 60px rgba(227,150,64,0.4);
-        }
-        
-        .book-info h2 {
-            font-size: 2.5rem;
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            animation: textShimmer 3s ease-in-out infinite;
-        }
-        
-        .book-info .release-date {
-            font-size: 1.2rem;
-            color: var(--primary-orange);
-            margin-bottom: 2rem;
-        }
-        
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
-            margin: 4rem 0;
-        }
-        
-        .profile-image {
-            text-align: center;
-            animation: profileFloat 6s ease-in-out infinite;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-        }
-
-        .profile-image img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(227,150,64,0.4);
-        }
-        
-        .bio h3 {
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .bio p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Content Hub */
-        .content-hub {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin: 4rem 0;
-        }
-        
-        .platform-card {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid var(--primary-orange);
-            transition: all 0.3s;
-            animation: platformFloat 5s ease-in-out infinite;
-        }
-
-        .platform-card:nth-child(1) { animation-delay: 0s; }
-        .platform-card:nth-child(2) { animation-delay: 2.5s; }
-
-        .platform-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(227,150,64,0.3);
-            border-color: var(--brand-red);
-        }
-        
-        .platform-card i {
-            font-size: 3rem;
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-        
-        .platform-card h3 {
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .embed-container {
-            margin: 2rem 0;
-        }
-
-        .youtube-embed {
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .youtube-embed:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(227,150,64,0.3);
-        }
-        
-        /* Footer */
-        footer {
-            background: #000;
-            color: var(--white);
-            padding: 3rem 0 1rem 0;
-            border-top: 3px solid var(--primary-orange);
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(227,150,64,0.05), transparent, rgba(238,14,33,0.03));
-            animation: footerGlow 10s ease-in-out infinite;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-brand h3 {
-            color: var(--primary-orange);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-brand p {
-            color: var(--brand-gray);
-            font-size: 0.9rem;
-        }
-        
-        .footer-links h4,
-        .footer-info h4 {
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .footer-info ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer-info ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-info ul li a {
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .footer-info ul li a:hover {
-            color: var(--primary-orange);
-            transform: translateX(5px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--brand-gray);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-bottom p {
-            margin: 0.5rem 0;
-            font-size: 0.9rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.8rem;
-            transition: all 0.3s;
-            padding: 0.5rem;
-            border-radius: 50%;
-            background: rgba(227,150,64,0.1);
-            animation: socialFloat 4s ease-in-out infinite;
-        }
-
-        .social-links a:nth-child(1) { animation-delay: 0s; }
-        .social-links a:nth-child(2) { animation-delay: 0.5s; }
-        .social-links a:nth-child(3) { animation-delay: 1s; }
-        .social-links a:nth-child(4) { animation-delay: 1.5s; }
-        .social-links a:nth-child(5) { animation-delay: 2s; }
-        
-        .social-links a:hover {
-            color: var(--primary-orange);
-            background: rgba(227,150,64,0.3);
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        /* ANIMATIONS */
-        @keyframes pulseGlow {
-            0%, 100% { text-shadow: 0 0 20px rgba(227,150,64,0.5); }
-            50% { text-shadow: 0 0 40px rgba(227,150,64,0.8), 0 0 60px rgba(238,14,33,0.3); }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        @keyframes fadeSlideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 0.8; transform: translateY(0); }
-        }
-
-        @keyframes loadingBounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        @keyframes loadingProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes socialFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(5deg); }
-        }
-
-        @keyframes heroImageFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes floatUnison {
-            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-            33% { transform: translateY(-20px) translateX(10px) scale(1.05); }
-            66% { transform: translateY(10px) translateX(-15px) scale(0.95); }
-        }
-
-        @keyframes flowBackground {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); }
-        }
-
-        @keyframes navSlideDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes pageSlideIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes heroOverlayPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes heroNavSlideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-            50% { text-shadow: 0 0 20px rgba(227,150,64,0.5); }
-        }
-
-        @keyframes buttonFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-        }
-
-        @keyframes titleSlideIn {
-            0% { opacity: 0; transform: translateX(-30px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes bookFloat {
-            0%, 100% { transform: translateY(0px) rotateY(0deg); }
-            50% { transform: translateY(-10px) rotateY(2deg); }
-        }
-
-        @keyframes textShimmer {
-            0%, 100% { background-position: -200px 0; }
-            100% { background-position: 200px 0; }
-        }
-
-        @keyframes profileFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        @keyframes platformFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes footerGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-center {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(0,0,0,0.95);
-                padding: 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links.show {
-                display: flex;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .loading-logo {
-                font-size: 2.5rem;
-            }
-
-            .loading-brand-logo {
-                width: 100px;
-                height: 100px;
-                margin: 1.5rem 0;
-            }
-
-            .loading-subtitle {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .hero-main-image {
-                animation: none; /* Disable float animation on mobile for performance */
-            }
-
-            .book-showcase,
-            .about-grid,
-            .content-hub {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .floating-element {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- LOADING SCREEN - AUTO TRANSITIONS TO HERO -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">PEANUTS & EGOS</div>
-        <div class="loading-brand-logo">
-            <img src="peanuts-egos-logo.png" alt="Peanuts & Egos Logo">
-        </div>
-        <div class="loading-subtitle">"The World Between The Lines"</div>
-        <div class="loading-animation">
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-        </div>
-        <div class="loading-progress">
-            <div class="loading-bar"></div>
-        </div>
-        <div class="social-preview">
-            <div class="social-icon"><i class="fas fa-newspaper"></i></div>
-            <div class="social-icon"><i class="fab fa-youtube"></i></div>
-            <div class="social-icon"><i class="fab fa-instagram"></i></div>
-            <div class="social-icon"><i class="fab fa-facebook"></i></div>
-            <div class="social-icon"><i class="fab fa-spotify"></i></div>
-        </div>
+<!-- Load Tailwind CSS and Inter font -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  :root {
+    /* Custom Color Palette based on user's image: */
+    --color-dark: #010101; /* Black (Primary Background) */
+    --color-content-bg: #1a1a1a; /* Very Dark Gray (Card/Section Background) */
+    --color-light: #ffffff; /* White (Text) */
+    --color-primary-accent: #ee0e21; /* Bright Red (Main Highlight/Links) */
+    --color-secondary-accent: #e39640; /* Copper/Orange (CTA/Buttons) */
+    --color-gray: #838383; /* Neutral Gray (Subtle text/lines) */
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+  }
+  .content-card {
+    /* Subtle hover effect for content cards */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  }
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div id="app" class="min-h-screen flex flex-col">
+
+  <!-- Header/Navigation: Sticky at the top -->
+  <header class="bg-[var(--color-dark)] shadow-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold text-[var(--color-light)] tracking-tight">
+        <span class="text-[var(--color-primary-accent)]">P&E</span>
+        <span class="hidden sm:inline"> | Peanuts & Egos</span>
+      </h1>
+      <nav class="space-x-4">
+        <a href="#book-info" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide</a>
+        <a href="#youtube-feed" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
+        <a href="#substack-feed" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
+        <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="bg-[var(--color-secondary-accent)] text-[var(--color-dark)] px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition duration-150">Buy Book 1</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- FLOATING BACKGROUND ELEMENTS -->
-    <div class="floating-bg">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
+  <!-- Hero Section / Book CTA (Promoting the new concept) -->
+  <section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+      <!-- Image Placeholder for Book Cover -->
+      <div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
+        <!-- Using a placeholder image with the new Black/Red/Copper colors for aesthetic continuity -->
+        <img src="https://placehold.co/400x600/010101/ee0e21?text=PEANUTS+%26+EGOS%0A%0ABook+2+Guide" alt="Peanuts & Egos Book 2 Cover" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Text Content -->
+      <div class="lg:max-w-3xl text-center lg:text-left">
+        <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Book Two Announcement</p>
+        <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-light)] mb-4 leading-tight">
+          A Guide: American Football in the German Club System
+        </h2>
+        <p class="text-xl text-[var(--color-gray)] mb-8">
+          Challenges, chances, and cheering. The book goes deep into the Vereinsführung (Club Leadership) of the Munich Cowboys, explained by the German Club President and his former American Head Coach.
+        </p>
+        <a href="#" class="inline-block bg-[var(--color-secondary-accent)] text-[var(--color-dark)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transform hover:scale-105 transition duration-300">
+          Pre-Order Now (Coming Soon)
+        </a>
+      </div>
     </div>
+  </section>
 
-    <!-- FLOWING BACKGROUND -->
-    <div class="flowing-bg"></div>
+  <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-brand" onclick="backToLanding()" title="Back to Landing">
-                P&E
-            </div>
-            <div class="nav-center">
-                <ul class="nav-links">
-                    <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
-                    <li><a href="#" onclick="showPage('about')">About</a></li>
-                    <li><a href="#" onclick="showPage('book')">The Book</a></li>
-                    <li><a href="#" onclick="showPage('content')">Content</a></li>
-                    <li><a href="#" onclick="showPage('connect')">Connect</a></li>
-                </ul>
-            </div>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Home Page -->
-    <section id="home" class="page-section active">        
-        <div class="hero-navigation">
-            <div class="container">
-                <p class="hero-subtitle">
-                    Where American football dreams meet European reality. Join the untold story of the game's global evolution through the eyes of those who lived it.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#" onclick="showPage('book')" class="btn btn-primary">Pre-Order The Book</a>
-                    <a href="#" onclick="showPage('content')" class="btn btn-secondary">Watch Latest Episodes</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- HERO IMAGE SECTION -->
-        <div class="hero-image-section">
-            <!-- Method 1: IMG tag with cache busting -->
-            <img src="peanuts-egos-hero.png?v=1" 
-                 alt="Peanuts & Egos - The World Between The Lines" 
-                 class="hero-main-image"
-                 onerror="this.style.display='none'; document.querySelector('.hero-bg-fallback').style.display='block';"
-                 onload="console.log('Hero PNG image loaded successfully');">
-            
-            <!-- Method 2: Background Image Fallback -->
-            <div class="hero-bg-fallback" style="display: none; background: url('peanuts-egos-hero.png?v=1') center/cover no-repeat; width: 100%; height: 500px; border-radius: 10px; animation: heroImageFloat 6s ease-in-out infinite;"></div>
-        </div>
-        
-        <div class="content-section dark">
-            <div class="container">
-                <h2 class="section-title">Our Mission</h2>
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3><i class="fas fa-globe-americas"></i> Global Perspective</h3>
-                        <p>Documenting American football's international journey through firsthand accounts and expert insights unavailable anywhere else.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3><i class="fas fa-users"></i> Authentic Stories</h3>
-                        <p>From NFL Europe veterans to international pioneers, we share the real experiences of those who built the game globally.</p>
-                    </div>
-                    <div class="content-card">
-                        <h3><i class="fas fa-chart-line"></i> Strategic Analysis</h3>
-                        <p>Expert breakdown of the NFL's global expansion initiatives and the evolution of international playing styles.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- YouTube Feed -->
+    <section id="youtube-feed" class="lg:col-span-2">
+      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h3>
+      <div id="youtube-list" class="space-y-6">
+        <!-- YouTube content cards will be injected here by JavaScript -->
+      </div>
+      <div class="mt-8 text-center">
+        <a href="https://www.youtube.com/@PeanutsAndEgos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-light)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+      </div>
     </section>
 
-    <!-- About Page -->
-    <section id="about" class="page-section">
-        <div class="content-section gray">
-            <div class="container">
-                <h2 class="section-title">Meet Denauld Brown</h2>
-                <div class="about-grid">
-                    <div class="profile-image">
-                        <img src="denauld-brown.jpg" alt="Denauld Brown - Author & Coach">
-                    </div>
-                    <div class="bio">
-                        <h3>Former NFL Europe Champion & German Football League Coach</h3>
-                        <p>Denauld Brown brings a rare dual perspective as both a player and coach in international football. As an NFL Europe champion, he experienced the league's highs and lows from inside the locker room.</p>
-                        <p>Later, as a head coach in the German Football League, he helped develop European talent and witnessed the grassroots growth of the sport across the continent.</p>
-                        <p>This unique journey gives him unparalleled insight into how American football translates globally—both culturally and strategically. In Bielefeld, a city locals joke "doesn't exist," he entered a high-stakes game where X's and O's took a backseat to egos and politics.</p>
-                        <p><strong>With unflinching honesty, Brown reveals how navigating cultural clashes and backdoor politics transformed his approach to leadership forever.</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Substack Feed -->
+    <section id="substack-feed" class="lg:col-span-1">
+      <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Teasers & Podcast)</h3>
+      <div id="substack-list" class="space-y-6">
+        <!-- Substack content cards will be injected here by JavaScript -->
+      </div>
+      <div class="mt-8 text-center">
+        <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-light)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Read Teaser / Subscribe &rarr;</a>
+      </div>
     </section>
 
-    <!-- Book Page -->
-    <section id="book" class="page-section">
-        <div class="content-section dark">
-            <div class="container">
-                <div class="book-showcase">
-                    <div class="book-cover">
-                        <img src="book-cover.jpg" alt="Peanuts & Egos Book Cover">
-                    </div>
-                    <div class="book-info">
-                        <h2>The Phantom City Playbook</h2>
-                        <p class="release-date">Available October 9, 2025</p>
-                        <p style="margin-bottom: 2rem;"><strong>"There's a sucker at every poker table, and if you can't figure out who it is after the first hand, it's you."</strong></p>
-                        <p>When former NFL player Denauld Brown arrived in Bielefeld, Germany—a city locals joke "doesn't exist"—he entered a high-stakes game where X's and O's took a backseat to egos and politics.</p>
-                        <p>Facing a club president with a hidden agenda, a former coach plotting his return, and a team divided by loyalty and culture, Brown discovered that surviving in international football required more than tactical knowledge—it demanded mastering the unwritten rules of a game few Americans understood.</p>
-                        <div class="cta-buttons">
-                            <a href="#" class="btn btn-primary">Pre-Order on Amazon</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="padding: 3rem 0;">
-                    <h3 class="section-title" style="color: var(--primary-orange);">Behind the Poker Metaphor</h3>
-                    <div class="content-grid">
-                        <div class="content-card" style="background: rgba(255,255,255,0.1); color: var(--white);">
-                            <h3 style="color: #e39640;">The Opening Hand</h3>
-                            <p>"THE BLUFF: How a club president's public support masked a calculated plan to undermine my authority from day one."</p>
-                        </div>
-                        <div class="content-card" style="background: rgba(255,255,255,0.1); color: var(--white);">
-                            <h3 style="color: #e39640;">The Middle Game</h3>
-                            <p>"READING THE TELLS: In international football, just like in poker, reading the invisible signals is more valuable than any playbook."</p>
-                        </div>
-                        <div class="content-card" style="background: rgba(255,255,255,0.1); color: var(--white);">
-                            <h3 style="color: #e39640;">The Final Count</h3>
-                            <p>"GOING ALL IN: The pivotal decision to start 19-year-old Niklas Garry wasn't just a football choice—it was pushing all my chips to the center of the table."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--color-dark)] border-t border-[var(--color-gray)] mt-12 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
+      <p class="text-[var(--color-gray)]">&copy; 2025 Peanuts & Egos. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#youtube-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">YouTube</a>
+        <a href="#substack-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Substack</a>
+        <a href="mailto:contact@peanutsandegos.com" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Mock Data for YouTube and Substack (Replace with your actual feeds/links)
+  const mockYouTubeVideos = [
+    { title: "GFL Week 10 Breakdown: Title Race Heats Up", date: "Oct 25, 2025", duration: "12:30", embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=..." },
+    { title: "Interview with a GFL Import: Life in Europe", date: "Oct 18, 2025", duration: "18:45", embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=..." },
+    { title: "Club Finances: Peanuts or Profit? An analysis.", date: "Oct 10, 2025", duration: "15:10", embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=..." },
+  ];
+
+  const mockSubstackArticles = [
+    { title: "The Hidden Cost of 'Cheering': Fan Loyalty in the Vereinswesen", date: "Nov 5, 2025", summary: "Exploring the emotional and financial investment of German football fans, and how it differs from US sports fandom." },
+    { title: "Challenges: Why Contracts are Different in the GFL", date: "Oct 29, 2025", summary: "A deep dive into the legal and cultural differences of player contracts between the NFL/CFL and the GFL system." },
+    { title: "The President's Desk: An American Coach's Perspective", date: "Oct 22, 2025", summary: "Exclusive commentary on the dynamic between US coaches and German club presidents, featuring insights from Werner." },
+  ];
+
+  function renderContent() {
+    const youtubeList = document.getElementById('youtube-list');
+    const substackList = document.getElementById('substack-list');
+
+    // --- Render YouTube Videos ---
+    youtubeList.innerHTML = mockYouTubeVideos.map(video => `
+      <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
+        <!-- Video Embed/Placeholder -->
+        <div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
+          <!-- NOTE: The embedUrl here is a placeholder. Replace it with your actual YouTube embed links. -->
+          <iframe 
+            class="w-full h-full"
+            src="${video.embedUrl}" 
+            title="${video.title}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
         </div>
-    </section>
-
-    <!-- Content Page -->
-    <section id="content" class="page-section">
-        <div class="content-section dark">
-            <div class="container">
-                <h2 class="section-title">Join the Conversation</h2>
-                <div class="content-hub">
-                    <div class="platform-card">
-                        <i class="fas fa-newspaper"></i>
-                        <h3>Substack Newsletter</h3>
-                        <p>Exclusive content & chapter previews. Get behind-the-scenes insights and strategic analysis unavailable anywhere else.</p>
-                        <div class="embed-container">
-                            <iframe src="https://peanutsandegos.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white; border-radius: 10px;" frameborder="0" scrolling="no"></iframe>
-                        </div>
-                    </div>
-                    
-                    <div class="platform-card">
-                        <i class="fab fa-youtube"></i>
-                        <h3>YouTube Channel</h3>
-                        <p>International football analysis & interviews. Watch exclusive episodes featuring NFL Europe veterans and coaching insights.</p>
-                        <div class="embed-container">
-                            <div class="youtube-embed">
-                                <iframe width="100%" height="320" src="https://www.youtube.com/embed/VwQjbOdyNWw" title="Peanuts & Egos Latest Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 10px;"></iframe>
-                            </div>
-                        </div>
-                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">Subscribe on YouTube</a>
-                    </div>
-                </div>
-                
-                <div style="padding: 3rem 0;">
-                    <h3 class="section-title">What We Deliver</h3>
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <h3><i class="fas fa-microphone"></i> Exclusive Interviews</h3>
-                            <p>NFL Europe veterans and international football pioneers share their untold stories.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3><i class="fas fa-chart-bar"></i> Strategic Analysis</h3>
-                            <p>Expert breakdown of the NFL's global expansion initiatives and international development.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3><i class="fas fa-globe"></i> Cultural Chronicles</h3>
-                            <p>How American football adapts across different countries and cultures.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3><i class="fas fa-chalkboard-teacher"></i> Technical Breakdowns</h3>
-                            <p>International playing styles and coaching philosophies from a veteran perspective.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Connect Page -->
-    <section id="connect" class="page-section">
-        <div class="content-section gray">
-            <div class="container">
-                <h2 class="section-title">Connect With Us</h2>
-                <div class="content-section dark" style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 3rem;">
-                    <div style="text-align: center; margin-bottom: 3rem;">
-                        <h3 style="color: var(--primary-orange); margin-bottom: 2rem;">The Final Hand Awaits</h3>
-                        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Every leader faces their own phantom city – a place where the visible game masks the invisible one. Your next chapter begins October 9, 2025.</p>
-                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-orange); margin-top: 2rem;">"ANTE UP"</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://peanutsandegos.substack.com" target="_blank" title="Substack Newsletter">
-                            <i class="fas fa-newspaper"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" title="YouTube Channel">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://instagram.com/peanutsandegos" target="_blank" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://facebook.com/profile.php?id=61575224906188" target="_blank" title="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD" target="_blank" title="Spotify Podcast">
-                            <i class="fab fa-spotify"></i>
-                        </a>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 3rem;">
-                        <h4 style="color: var(--primary-orange); margin-bottom: 1rem;">Stay Connected</h4>
-                        <p>Follow our social media channels and subscribe to our newsletter for the latest updates on international football and exclusive book content.</p>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 3rem;">
-                        <p style="font-style: italic; color: var(--light-gray);">
-                            Remember: In international football, the peanuts are small, but the egos? They span continents.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>PEANUTS & EGOS</h3>
-                    <p>Where American football dreams meet European reality</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="https://peanutsandegos.substack.com" target="_blank" title="Substack Newsletter">
-                            <i class="fas fa-newspaper"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@peanutsandegos" target="_blank" title="YouTube Channel">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://instagram.com/peanutsandegos" target="_blank" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://facebook.com/profile.php?id=61575224906188" target="_blank" title="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD" target="_blank" title="Spotify Podcast">
-                            <i class="fab fa-spotify"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-info">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#" onclick="showPage('book')">Pre-Order Book</a></li>
-                        <li><a href="#" onclick="showPage('about')">About Denauld</a></li>
-                        <li><a href="#" onclick="showPage('content')">Latest Content</a></li>
-                        <li><a href="https://peanutsandegos.substack.com" target="_blank">Newsletter</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
-                <p style="margin-top: 1rem; color: var(--brand-gray);">
-                    Based on the upcoming book by Denauld Brown - October 2025
-                </p>
-                <p style="font-style: italic; color: var(--primary-orange); margin-top: 1rem;">
-                    "The peanuts are small, but the egos? They span continents."
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // AUTO TRANSITION: Loading Screen → Main Site (NO POPUP)
-        window.addEventListener('load', function() {
-            // After loading bar completes (3 seconds), go directly to main site
-            setTimeout(function() {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 3000);
-            
-            // Debug hero image loading
-            setTimeout(debugHeroImage, 500);
-        });
-
-        // FORCE REFRESH HERO IMAGE (for testing) - Updated for PNG
-        function forceRefreshHeroImage() {
-            const mainImg = document.querySelector('.hero-main-image');
-            const fallback = document.querySelector('.hero-bg-fallback');
-            
-            if (mainImg) {
-                mainImg.src = 'peanuts-egos-hero.png?v=' + Date.now();
-                mainImg.style.display = 'block';
-                if (fallback) fallback.style.display = 'none';
-                console.log('🔄 Force refreshing hero PNG image...');
-            }
-        }
-
-        // DEBUG HERO IMAGE FUNCTION - Updated for PNG
-        function debugHeroImage() {
-            console.log('🔍 Testing hero image: peanuts-egos-hero.png');
-            
-            // Test the new PNG file
-            const img = new Image();
-            img.onload = function() {
-                console.log('✅ Hero PNG image loaded successfully!');
-                console.log('Image dimensions:', this.naturalWidth, 'x', this.naturalHeight);
-            };
-            img.onerror = function() {
-                console.error('❌ Hero PNG image failed to load');
-                console.log('🔄 Trying cache-busted version...');
-                
-                // Try cache-busted version
-                const img2 = new Image();
-                img2.onload = function() {
-                    console.log('✅ Cache-busted hero PNG image loaded!');
-                    // Force reload the main image
-                    const mainImg = document.querySelector('.hero-main-image');
-                    if (mainImg) {
-                        mainImg.src = 'peanuts-egos-hero.png?v=' + Date.now();
-                    }
-                };
-                img2.onerror = function() {
-                    console.error('❌ Cache-busted PNG version also failed');
-                    console.log('💡 Try: Hard refresh (Ctrl+F5) or check if GitHub Pages deployed the PNG file');
-                };
-                img2.src = 'peanuts-egos-hero.png?v=' + Date.now();
-            };
-            img.src = 'peanuts-egos-hero.png';
-        }
-
-        // ENTER MAIN SITE - No longer needed, goes directly
-        function enterMainSite() {
-            // Function kept for compatibility but not used
-        }
-
-        // BACK TO LANDING - Show loading screen again
-        function backToLanding() {
-            document.getElementById('loadingScreen').classList.remove('hidden');
-            document.getElementById('heroLanding').classList.remove('active');
-            document.getElementById('heroLanding').classList.remove('hidden');
-        }
-
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page-section');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Find and activate current nav link
-            const currentLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
-            if (currentLink) {
-                currentLink.classList.add('active');
-            }
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
         
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
-        });
-        
-        // Smooth scroll for internal links
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('a[href^="#"]')) {
-                e.preventDefault();
-            }
-        });
-        
-        // Enhanced scroll effects
-        window.addEventListener('scroll', function() {
-            const hero = document.querySelector('.hero');
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.3;
-            
-            if (hero) {
-                hero.style.transform = `translateY(${rate}px)`;
-            }
+        <!-- Video Details -->
+        <div class="md:w-1/2 flex flex-col justify-between">
+          <div>
+            <h4 class="text-xl font-semibold text-[var(--color-light)] mb-2">${video.title}</h4>
+            <p class="text-sm text-[var(--color-primary-accent)] font-medium">${video.duration}</p>
+          </div>
+          <p class="text-sm text-[var(--color-gray)] mt-2 md:mt-0">Published: ${video.date}</p>
+        </div>
+      </div>
+    `).join('');
 
-            // Parallax effect for floating elements
-            const floatingElements = document.querySelectorAll('.floating-element');
-            floatingElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
 
-        // Dynamic content loading effect
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // --- Render Substack Articles ---
+    substackList.innerHTML = mockSubstackArticles.map(article => `
+      <a href="https://peanutsandegos.substack.com/" target="_blank" class="content-card bg-[var(--color-content-bg)] p-5 rounded-xl shadow-lg transition duration-300 block">
+        <h4 class="text-xl font-semibold text-[var(--color-light)] mb-2">${article.title}</h4>
+        <p class="text-[var(--color-gray)] text-sm mb-3">${article.summary}</p>
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-[var(--color-primary-accent)] font-medium">Read Teaser / Subscribe &rarr;</span>
+          <span class="text-xs text-[var(--color-gray)]">Published: ${article.date}</span>
+        </div>
+      </a>
+    `).join('');
+  }
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all content cards for scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.content-card, .platform-card');
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.6s ease-out';
-                observer.observe(card);
-            });
-        });
-    </script>
-</body>
-</html>
+  // Ensure content is rendered after the page loads
+  window.onload = function() {
+    renderContent();
+  };
+</script>
