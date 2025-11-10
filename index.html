@@ -3,18 +3,20 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
   :root {
-    /* Custom Color Palette based on user's image: */
-    --color-dark: #010101; /* Black (Primary Background) */
-    --color-content-bg: #1a1a1a; /* Very Dark Gray (Card/Section Background) */
-    --color-light: #ffffff; /* White (Text) */
+    /* Custom Color Palette (Adapted for Light Mode) */
+    --color-dark: #010101; /* Black (Text/Foreground) */
+    --color-content-bg: #f5f5f5; /* Light Gray (Card/Section Background) */
+    --color-light: #ffffff; /* White (Primary Background) */
     --color-primary-accent: #ee0e21; /* Bright Red (Main Highlight/Links) */
     --color-secondary-accent: #e39640; /* Copper/Orange (CTA/Buttons) */
-    --color-gray: #838383; /* Neutral Gray (Subtle text/lines) */
+    --color-gray: #5e5e5e; /* Darker Neutral Gray (Subtle text/lines) */
   }
   body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--color-dark);
-    color: var(--color-light);
+    /* Inverted: White background */
+    background-color: var(--color-light); 
+    /* Inverted: Dark text */
+    color: var(--color-dark); 
   }
   .content-card {
     /* Subtle hover effect for content cards */
@@ -22,7 +24,8 @@
   }
   .content-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    /* Adjusted shadow for light mode */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
   }
 </style>
 
@@ -31,16 +34,16 @@
 <div id="app" class="min-h-screen flex flex-col">
 
   <!-- Header/Navigation: Sticky at the top -->
-  <header class="bg-[var(--color-dark)] shadow-xl sticky top-0 z-50">
+  <header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-extrabold text-[var(--color-light)] tracking-tight">
+      <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight">
         <span class="text-[var(--color-primary-accent)]">P&E</span>
         <span class="hidden sm:inline"> | Peanuts & Egos</span>
       </h1>
       <nav class="space-x-4">
-        <a href="#book-info" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide</a>
-        <a href="#youtube-feed" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
-        <a href="#substack-feed" class="text-gray-300 hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
+        <a href="#book-info" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide</a>
+        <a href="#youtube-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
+        <a href="#substack-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
         <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="bg-[var(--color-secondary-accent)] text-[var(--color-dark)] px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition duration-150">Buy Book 1</a>
       </nav>
     </div>
@@ -58,7 +61,7 @@
       <!-- Text Content -->
       <div class="lg:max-w-3xl text-center lg:text-left">
         <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Book Two Announcement</p>
-        <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-light)] mb-4 leading-tight">
+        <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
           A Guide: American Football in the German Club System
         </h2>
         <p class="text-xl text-[var(--color-gray)] mb-8">
@@ -82,7 +85,7 @@
       </div>
       <div class="mt-8 text-center">
         <!-- REAL YOUTUBE CHANNEL LINK -->
-        <a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-light)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+        <a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
       </div>
     </section>
 
@@ -94,16 +97,16 @@
       </div>
       <div class="mt-8 text-center">
         <!-- REAL SUBSTACK LINK -->
-        <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-light)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Read Teaser / Subscribe &rarr;</a>
+        <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Read Teaser / Subscribe &rarr;</a>
       </div>
     </section>
 
   </main>
 
   <!-- Footer -->
-  <footer class="bg-[var(--color-dark)] border-t border-[var(--color-gray)] mt-12 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
-      <p class="text-[var(--color-gray)]">&copy; 2025 Peanuts & Egos. All rights reserved.</p>
+  <footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--color-gray)]">
+      <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
       <div class="mt-2 space-x-4">
         <a href="#youtube-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">YouTube</a>
         <a href="#substack-feed" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Substack</a>
@@ -133,6 +136,7 @@
     const substackList = document.getElementById('substack-list');
 
     // --- Render YouTube Videos ---
+    // Note: Swapping card background to --color-content-bg (#f5f5f5) and text to --color-dark (#010101) for contrast
     youtubeList.innerHTML = mockYouTubeVideos.map(video => `
       <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
         <!-- Video Embed/Placeholder -->
@@ -151,7 +155,7 @@
         <!-- Video Details -->
         <div class="md:w-1/2 flex flex-col justify-between">
           <div>
-            <h4 class="text-xl font-semibold text-[var(--color-light)] mb-2">${video.title}</h4>
+            <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${video.title}</h4>
             <p class="text-sm text-[var(--color-primary-accent)] font-medium">${video.duration}</p>
           </div>
           <p class="text-sm text-[var(--color-gray)] mt-2 md:mt-0">Published: ${video.date}</p>
@@ -161,9 +165,10 @@
 
 
     // --- Render Substack Articles ---
+    // Note: Swapping card background to --color-content-bg (#f5f5f5) and text to --color-dark (#010101) for contrast
     substackList.innerHTML = mockSubstackArticles.map(article => `
       <a href="https://peanutsandegos.substack.com/" target="_blank" class="content-card bg-[var(--color-content-bg)] p-5 rounded-xl shadow-lg transition duration-300 block">
-        <h4 class="text-xl font-semibold text-[var(--color-light)] mb-2">${article.title}</h4>
+        <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${article.title}</h4>
         <p class="text-[var(--color-gray)] text-sm mb-3">${article.summary}</p>
         <div class="flex justify-between items-center">
           <span class="text-xs text-[var(--color-primary-accent)] font-medium">Read Teaser / Subscribe &rarr;</span>
