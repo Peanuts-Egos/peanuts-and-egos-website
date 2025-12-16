@@ -1,244 +1,503 @@
-<!-- Load Tailwind CSS and Inter font -->
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-  :root {
-    /* Custom Color Palette (Adapted for Light Mode) */
-    --color-dark: #010101; /* Black (Text/Foreground) */
-    --color-content-bg: #f5f5f5; /* Light Gray (Card/Section Background) */
-    --color-light: #ffffff; /* White (Primary Background) */
-    --color-primary-accent: #ee0e21; /* Bright Red (Main Highlight/Links) */
-    --color-secondary-accent: #e39640; /* Copper/Orange (CTA/Buttons) */
-    --color-gray: #5e5e5e; /* Darker Neutral Gray (Subtle text/lines) */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>Peanuts & Egos | Where Gridirons Connect - NFL Europe & International Football Stories</title>
+  <meta name="title" content="Peanuts & Egos | Where Gridirons Connect - NFL Europe & International Football Stories">
+  <meta name="description" content="Join former NFL Europe player and German Football League coach Denauld Brown for untold stories of football's global journey. No PR spin. Just real stories from the trenches. Book OUT NOW on Amazon!">
+  <meta name="keywords" content="NFL Europe, German Football League, GFL, international football, American football abroad, Denauld Brown, football coaching, European football, sports memoir, American football Germany, NFL Europe history, football autobiography">
+  <meta name="author" content="Denauld Brown">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://peanutsandegos.com/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="peanutsandegos.png">
+  <link rel="apple-touch-icon" href="peanutsandegos.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://peanutsandegos.com/">
+  <meta property="og:title" content="Peanuts & Egos | Where Gridirons Connect - NFL Europe & International Football Stories">
+  <meta property="og:description" content="Join former NFL Europe player and German Football League coach Denauld Brown for untold stories of football's global journey. No PR spin. Just real stories from the trenches. Book OUT NOW on Amazon!">
+  <meta property="og:image" content="https://peanutsandegos.com/peanutsandegosbook.png">
+  <meta property="og:site_name" content="Peanuts & Egos">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://peanutsandegos.com/">
+  <meta property="twitter:title" content="Peanuts & Egos | Where Gridirons Connect - NFL Europe & International Football Stories">
+  <meta property="twitter:description" content="Join former NFL Europe player and German Football League coach Denauld Brown for untold stories of football's global journey. No PR spin. Just real stories from the trenches. Book OUT NOW on Amazon!">
+  <meta property="twitter:image" content="https://peanutsandegos.com/peanutsandegosbook.png">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual GA4 Measurement ID
+  </script>
+
+  <!-- LinkedIn Insight Tag -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "XXXXXX"; // Replace with your actual LinkedIn Partner ID
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+  <script type="text/javascript">
+    (function(l) {
+      if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+      window.lintrk.q=[]}
+      var s = document.getElementsByTagName("script")[0];
+      var b = document.createElement("script");
+      b.type = "text/javascript";b.async = true;
+      b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s);
+    })(window.lintrk);
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=XXXXXX&fmt=gif" />
+  </noscript>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Peanuts & Egos",
+        "url": "https://peanutsandegos.com",
+        "logo": "https://peanutsandegos.com/peanutsandegos.png",
+        "description": "Untold stories from NFL Europe and the German Football League with former player and coach Denauld Brown",
+        "sameAs": [
+          "https://www.youtube.com/@peanutsandegos",
+          "https://www.instagram.com/peanutsandegos",
+          "https://www.linkedin.com/company/peanutsandegos/",
+          "https://peanutsandegos.substack.com",
+          "https://facebook.com/profile.php?id=61575224906188",
+          "https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD"
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Denauld Brown",
+        "description": "Former NFL Europe player and German Football League coach, author of Peanuts & Egos",
+        "url": "https://peanutsandegos.com",
+        "sameAs": [
+          "https://www.youtube.com/@peanutsandegos",
+          "https://www.instagram.com/peanutsandegos",
+          "https://www.linkedin.com/company/peanutsandegos/"
+        ],
+        "jobTitle": "Author, Former Football Coach",
+        "alumniOf": "NFL Europe"
+      },
+      {
+        "@type": "Book",
+        "name": "Peanuts & Egos: Touchdowns, Triumphs, and Turmoil in the German Football League",
+        "author": {
+          "@type": "Person",
+          "name": "Denauld Brown"
+        },
+        "description": "Former NFL player Denauld Brown thought he was joining a German football club. Instead, he walked into a high-stakes political war where American imports sabotage crucial games, board members secretly record his every move, and the club president orchestrates his downfall with Machiavellian precision.",
+        "url": "https://amazon.com/dp/B0FK48685T",
+        "image": "https://peanutsandegos.com/peanutsandegosbook.png",
+        "bookFormat": "https://schema.org/EBook",
+        "inLanguage": "en-US",
+        "genre": "Sports Memoir",
+        "datePublished": "2024"
+      }
+    ]
   }
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--color-light); 
-    color: var(--color-dark); 
-  }
-  .content-card {
-    /* Subtle hover effect for content cards */
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .content-card:hover {
-    transform: translateY(-4px);
-    /* Adjusted shadow for light mode */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
-  }
-</style>
+  </script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Load Tailwind CSS and Inter font -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<div id="app" class="min-h-screen flex flex-col">
+  <!-- Font Awesome for Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Header/Navigation: Sticky at the top -->
-  <header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight cursor-pointer" onclick="showPage('home-page')">
-        <span class="text-[var(--color-primary-accent)]">P&E</span>
-        <span class="hidden sm:inline"> | Peanuts & Egos</span>
-      </h1>
-      <nav class="space-x-4">
-        <!-- New navigation links for internal routing -->
-        <button onclick="showPage('guide-page')" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">The Guide (Book 2)</button>
-        
-        <!-- Existing links that remain on the Home Page -->
-        <a href="#youtube-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
-        <a href="#substack-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
-        
-        <!-- Primary CTA for Book 1 -->
-        <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="bg-[var(--color-secondary-accent)] text-[var(--color-dark)] px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition duration-150">Buy Book 1</a>
-      </nav>
-    </div>
-  </header>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    :root {
+      /* Custom Color Palette (Adapted for Light Mode) */
+      --color-dark: #010101; /* Black (Text/Foreground) */
+      --color-content-bg: #f5f5f5; /* Light Gray (Card/Section Background) */
+      --color-light: #ffffff; /* White (Primary Background) */
+      --color-primary-accent: #ee0e21; /* Bright Red (Main Highlight/Links) */
+      --color-secondary-accent: #e39640; /* Copper/Orange (CTA/Buttons) */
+      --color-gray: #5e5e5e; /* Darker Neutral Gray (Subtle text/lines) */
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-dark);
+    }
+    .content-card {
+      /* Subtle hover effect for content cards */
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .content-card:hover {
+      transform: translateY(-4px);
+      /* Adjusted shadow for light mode */
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    .social-icon {
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--color-content-bg);
+      color: var(--color-dark);
+      font-size: 24px;
+    }
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .social-icon.youtube:hover {
+      background-color: #FF0000;
+      color: white;
+    }
+    .social-icon.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      color: white;
+    }
+    .social-icon.linkedin:hover {
+      background-color: #0077B5;
+      color: white;
+    }
+    .social-icon.substack:hover {
+      background-color: #FF6719;
+      color: white;
+    }
+    .social-icon.facebook:hover {
+      background-color: #1877F2;
+      color: white;
+    }
+    .social-icon.spotify:hover {
+      background-color: #1DB954;
+      color: white;
+    }
+  </style>
+</head>
 
-  <!-- === HOME PAGE CONTENT (Book 1, YouTube, Substack) === -->
-  <div id="home-page" class="page-content flex-grow">
-    
-    <!-- Hero Section / Book 1 CTA (Permanent Home Page Feature) -->
-    <section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
-        <!-- Book 1 Image Placeholder -->
-        <div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
-          <img 
-            src="https://placehold.co/400x600/010101/ffffff?text=PEANUTS+%26+EGOS%0A%0ABook+1" 
-            alt="Peanuts & Egos Book 1 Cover" 
-            class="w-full h-full object-cover"
-            onerror="this.onerror=null;this.src='https://placehold.co/400x600/010101/ffffff?text=PEANUTS+%26+EGOS%0A%0ABook+1'"
-          >
-        </div>
+<body>
+  <div id="app" class="min-h-screen flex flex-col">
 
-        <!-- Text Content: UPDATED WITH NEW BLURB -->
-        <div class="lg:max-w-3xl text-center lg:text-left">
-          <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">Available Now</p>
-          <h2 class="text-5xl md:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
-            Peanuts & Egos: Touchdowns, Triumphs, and Turmoil in the GFL
-          </h2>
-          
-          <!-- English Quote -->
-          <p class="text-2xl text-[var(--color-primary-accent)] font-semibold italic mb-6">
-            "There's a sucker at every poker table, and if you can't figure out who it is after the first hand, it's you."
-          </p>
+    <!-- Header/Navigation: Sticky at the top -->
+    <header class="bg-[var(--color-content-bg)] shadow-xl sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <h1 class="text-3xl font-extrabold text-[var(--color-dark)] tracking-tight cursor-pointer" onclick="scrollToTop()">
+          <span class="text-[var(--color-primary-accent)]">P&E</span>
+          <span class="hidden sm:inline"> | Peanuts & Egos</span>
+        </h1>
+        <nav class="space-x-4 flex items-center">
+          <!-- Navigation links -->
+          <a href="#youtube-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">YouTube</a>
+          <a href="#substack-feed" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Substack</a>
+          <a href="#connect" class="text-[var(--color-dark)] hover:text-[var(--color-primary-accent)] transition duration-150 text-sm sm:text-base">Connect</a>
 
-          <!-- FULL ENGLISH BLURB - Added text-justify class -->
-          <p class="text-xl text-[var(--color-gray)] mb-6 text-justify">
-            Former NFL player Denauld Brown thought he was joining a German football club. Instead, he walked into a high-stakes political war where American imports sabotage crucial games, board members secretly record his every move, and the club president orchestrates his downfall with Machiavellian precision. In Bielefeld—a city Germans joke "doesn't exist"—Brown discovers that coaching means more than X's and O's. It means reading the tells of those plotting against you, building alliances in shadows, and surviving systematic surveillance designed to document your failure. When his own players deliberately drop passes in front of hostile crowds, Brown realizes he's not just fighting for wins—he's fighting for survival.
-          </p>
-          
-          <!-- The previous German blurb has been removed to keep the page strictly in English. -->
-          
-          <a href="https://www.amazon.com/dp/B0FK48685T" target="_blank" class="inline-block bg-[var(--color-secondary-accent)] text-[var(--color-dark)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transform hover:scale-105 transition duration-300">
-            Buy Book 1 on Amazon
-          </a>
-        </div>
+          <!-- Primary CTA -->
+          <a href="https://amazon.com/dp/B0FK48685T?utm_source=website&utm_medium=header&utm_campaign=book" target="_blank" rel="noopener noreferrer" class="bg-[var(--color-secondary-accent)] text-[var(--color-dark)] px-3 py-1.5 rounded-full text-sm font-semibold hover:opacity-90 transition duration-150">Buy Book</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!-- Main Content Area: YouTube and Substack Feeds (Desktop: 2/3 and 1/3 layout) -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Main Content -->
+    <main class="flex-grow">
 
-      <!-- YouTube Feed -->
-      <section id="youtube-feed" class="lg:col-span-2">
-        <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h3>
-        <div id="youtube-list" class="space-y-6">
-          <!-- YouTube content cards will be injected here by JavaScript -->
-        </div>
-        <div class="mt-8 text-center">
-          <!-- REAL YOUTUBE CHANNEL LINK -->
-          <a href="https://www.youtube.com/@peanutsandegos/videos" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+      <!-- Hero Section / Book CTA -->
+      <section id="book-info" class="bg-[var(--color-content-bg)] py-16 md:py-24 border-b border-[var(--color-primary-accent)]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+          <!-- Book Image -->
+          <div class="w-60 h-90 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
+            <img
+              src="peanutsandegosbook.png"
+              alt="Peanuts & Egos: Touchdowns, Triumphs, and Turmoil in the German Football League - Book Cover by Denauld Brown"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/010101/ffffff?text=PEANUTS+%26+EGOS'"
+            >
+          </div>
+
+          <!-- Text Content -->
+          <div class="lg:max-w-3xl text-center lg:text-left">
+            <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-2">OUT NOW on Amazon</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
+              Peanuts & Egos: Touchdowns, Triumphs, and Turmoil in the German Football League
+            </h1>
+
+            <!-- Quote -->
+            <p class="text-xl md:text-2xl text-[var(--color-primary-accent)] font-semibold italic mb-6">
+              "There's a sucker at every poker table, and if you can't figure out who it is after the first hand, it's you."
+            </p>
+
+            <!-- Description -->
+            <div class="text-lg md:text-xl text-[var(--color-gray)] mb-6 text-justify space-y-4">
+              <p>Ever wonder what happens when American football dreams meet European reality? Join former NFL Europe player and German Football League coach Denauld Brown for the untold stories of football's global journey. From phantom cities in Germany to packed London stadiums, we're your insider's guide to international football's evolution.</p>
+
+              <p>No PR spin. Just real stories from the trenches of the game's first global experiment.</p>
+
+              <p class="font-semibold text-[var(--color-dark)]">Episodes featuring:</p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Behind-the-scenes tales from NFL Europe</li>
+                <li>Cultural clashes and unexpected triumphs</li>
+                <li>The poker-like strategy of cross-cultural leadership</li>
+                <li>X's and O's of global football politics</li>
+              </ul>
+
+              <p class="italic">The peanuts are small, but the egos? They span continents.</p>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start mb-6">
+              <a href="https://amazon.com/dp/B0FK48685T?utm_source=website&utm_medium=hero&utm_campaign=book" target="_blank" rel="noopener noreferrer" class="inline-block bg-[var(--color-secondary-accent)] text-[var(--color-dark)] font-bold text-lg px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transform hover:scale-105 transition duration-300">
+                Buy on Amazon
+              </a>
+
+              <!-- Social Media Icons in Hero -->
+              <div class="flex gap-3">
+                <a href="https://www.youtube.com/@peanutsandegos?utm_source=website&utm_medium=hero&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube Channel" title="Subscribe on YouTube">
+                  <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/peanutsandegos?utm_source=website&utm_medium=hero&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram Profile" title="Follow on Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/peanutsandegos/?utm_source=website&utm_medium=hero&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn Company Page" title="Connect on LinkedIn">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Substack Feed -->
-      <section id="substack-feed" class="lg:col-span-1">
-        <h3 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack (Subscribe)</h3>
-        
-        <!-- Substack Subscribe Embed -->
-        <div class="flex justify-center bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg">
-          <!-- Iframe attributes adjusted for responsive width (100% of container) -->
-          <iframe 
-            src="https://peanutsandegos.substack.com/embed" 
-            width="100%" 
-            height="320" 
-            style="border:1px solid #EEE; background:white;" 
-            frameborder="0" 
-            scrolling="no"
-            class="max-w-md"
-          ></iframe>
-        </div>
-        <p class="text-center text-[var(--color-gray)] text-sm mt-4">
-          Sign up for exclusive content and podcast teasers!
-        </p>
-        <div class="mt-4 text-center">
-          <!-- Direct link fallback -->
-          <a href="https://peanutsandegos.substack.com/" target="_blank" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Visit Substack &rarr;</a>
+      <!-- Content Area: YouTube and Substack Feeds -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- YouTube Feed -->
+        <article id="youtube-feed" class="lg:col-span-2">
+          <h2 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Latest on YouTube</h2>
+          <div id="youtube-list" class="space-y-6">
+            <!-- YouTube content cards will be injected here by JavaScript -->
+          </div>
+          <div class="mt-8 text-center">
+            <a href="https://www.youtube.com/@peanutsandegos/videos?utm_source=website&utm_medium=content&utm_campaign=youtube" target="_blank" rel="noopener noreferrer" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">View All Videos &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Substack Feed -->
+        <article id="substack-feed" class="lg:col-span-1">
+          <h2 class="text-4xl font-bold mb-6 text-[var(--color-primary-accent)] border-b border-[var(--color-gray)] pb-2">Exclusive Substack</h2>
+
+          <!-- Substack Subscribe Embed -->
+          <div class="flex justify-center bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg">
+            <iframe
+              src="https://peanutsandegos.substack.com/embed"
+              width="100%"
+              height="320"
+              style="border:1px solid #EEE; background:white;"
+              frameborder="0"
+              scrolling="no"
+              class="max-w-md"
+              title="Subscribe to Peanuts & Egos Substack"
+            ></iframe>
+          </div>
+          <p class="text-center text-[var(--color-gray)] text-sm mt-4">
+            Get exclusive content on Substack! Deep dives into football culture, leadership, and international sports.
+          </p>
+          <div class="mt-4 text-center">
+            <a href="https://peanutsandegos.substack.com/?utm_source=website&utm_medium=content&utm_campaign=substack" target="_blank" rel="noopener noreferrer" class="text-[var(--color-primary-accent)] hover:text-[var(--color-dark)] font-semibold border-b border-[var(--color-primary-accent)] transition duration-150">Visit Substack &rarr;</a>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Connect Section -->
+      <section id="connect" class="bg-[var(--color-content-bg)] py-16 border-t border-[var(--color-primary-accent)]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-4xl md:text-5xl font-bold text-center text-[var(--color-dark)] mb-4">Join Our Community</h2>
+          <p class="text-xl text-center text-[var(--color-gray)] mb-10 max-w-3xl mx-auto">
+            Connect with us across platforms for exclusive content, behind-the-scenes stories, and real talk about international football.
+          </p>
+
+          <!-- Social Media Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto">
+
+            <!-- YouTube -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://www.youtube.com/@peanutsandegos?utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon youtube mb-3" aria-label="YouTube Channel" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">YouTube</h3>
+              <p class="text-sm text-[var(--color-gray)]">Subscribe for videos</p>
+            </div>
+
+            <!-- Instagram -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://www.instagram.com/peanutsandegos?utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon instagram mb-3" aria-label="Instagram Profile" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">Instagram</h3>
+              <p class="text-sm text-[var(--color-gray)]">Follow our journey</p>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://www.linkedin.com/company/peanutsandegos/?utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon linkedin mb-3" aria-label="LinkedIn Company Page" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">LinkedIn</h3>
+              <p class="text-sm text-[var(--color-gray)]">Business insights</p>
+            </div>
+
+            <!-- Substack -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://peanutsandegos.substack.com?utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon substack mb-3" aria-label="Substack Newsletter" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fas fa-newspaper"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">Substack</h3>
+              <p class="text-sm text-[var(--color-gray)]">Exclusive content</p>
+            </div>
+
+            <!-- Facebook -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://facebook.com/profile.php?id=61575224906188&utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon facebook mb-3" aria-label="Facebook Page" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">Facebook</h3>
+              <p class="text-sm text-[var(--color-gray)]">Join the community</p>
+            </div>
+
+            <!-- Spotify Podcast -->
+            <div class="flex flex-col items-center text-center">
+              <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD?utm_source=website&utm_medium=connect&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon spotify mb-3" aria-label="Spotify Podcast" style="width: 64px; height: 64px; font-size: 32px;">
+                <i class="fab fa-spotify"></i>
+              </a>
+              <h3 class="font-semibold text-[var(--color-dark)] mb-1">Spotify</h3>
+              <p class="text-sm text-[var(--color-gray)]">Listen to podcast</p>
+            </div>
+
+          </div>
+
+          <!-- Cross-platform CTAs -->
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[var(--color-primary-accent)]">
+              <h3 class="font-bold text-lg mb-2 text-[var(--color-dark)]">📺 Watch on YouTube</h3>
+              <p class="text-sm text-[var(--color-gray)] mb-3">Behind-the-scenes football stories and insights</p>
+              <a href="https://www.youtube.com/@peanutsandegos?sub_confirmation=1&utm_source=website&utm_medium=cta&utm_campaign=youtube" target="_blank" rel="noopener noreferrer" class="text-[var(--color-primary-accent)] font-semibold text-sm hover:underline">Subscribe Now &rarr;</a>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#0077B5]">
+              <h3 class="font-bold text-lg mb-2 text-[var(--color-dark)]">💼 Follow on LinkedIn</h3>
+              <p class="text-sm text-[var(--color-gray)] mb-3">Leadership and business insights from international sports</p>
+              <a href="https://www.linkedin.com/company/peanutsandegos/?utm_source=website&utm_medium=cta&utm_campaign=linkedin" target="_blank" rel="noopener noreferrer" class="text-[#0077B5] font-semibold text-sm hover:underline">Connect Now &rarr;</a>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#FF6719]">
+              <h3 class="font-bold text-lg mb-2 text-[var(--color-dark)]">📝 Read on Substack</h3>
+              <p class="text-sm text-[var(--color-gray)] mb-3">Exclusive deep dives and extended analysis</p>
+              <a href="https://peanutsandegos.substack.com?utm_source=website&utm_medium=cta&utm_campaign=substack" target="_blank" rel="noopener noreferrer" class="text-[#FF6719] font-semibold text-sm hover:underline">Subscribe Free &rarr;</a>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[linear-gradient(45deg,#f09433,#e6683c)]">
+              <h3 class="font-bold text-lg mb-2 text-[var(--color-dark)]">📸 Join on Instagram</h3>
+              <p class="text-sm text-[var(--color-gray)] mb-3">Daily stories and community engagement</p>
+              <a href="https://www.instagram.com/peanutsandegos?utm_source=website&utm_medium=cta&utm_campaign=instagram" target="_blank" rel="noopener noreferrer" class="text-[#E1306C] font-semibold text-sm hover:underline">Follow Now &rarr;</a>
+            </div>
+          </div>
         </div>
       </section>
 
     </main>
-  </div>
-  
-  <!-- === GUIDE PAGE CONTENT (Dedicated Book 2 Pre-Sale Page) === -->
-  <div id="guide-page" class="page-content hidden flex-grow">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      
-      <div class="text-center mb-12">
-        <h2 class="text-6xl font-extrabold text-[var(--color-dark)] mb-4 leading-tight">
-          The Guide: Peanuts & Egos in Munich
-        </h2>
-        <p class="text-2xl text-[var(--color-gray)]">
-          A definitive look at American Football in the German Club System (Coming Soon)
-        </p>
-      </div>
 
-      <div class="flex flex-col lg:flex-row items-center gap-12 bg-[var(--color-content-bg)] p-8 md:p-12 rounded-2xl shadow-xl">
-        
-        <!-- Book 2 Image -->
-        <div class="w-full lg:w-1/3 flex justify-center">
-          <div class="w-64 h-96 flex-shrink-0 rounded-lg shadow-2xl overflow-hidden">
-            <img 
-              src="https://i.ibb.co/L5tN0y2/Peanuts-Egos-Munich-Cover.jpg" 
-              alt="Peanuts & Egos Munich Book Cover" 
-              class="w-full h-full object-cover"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/010101/ee0e21?text=PEANUTS+%26+EGOS%0A%0AGuide+Cover'"
-            >
+    <!-- Footer -->
+    <footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+
+          <!-- About Column -->
+          <div>
+            <h3 class="text-xl font-bold text-[var(--color-dark)] mb-3">Peanuts & Egos</h3>
+            <p class="text-sm text-[var(--color-gray)]">
+              Untold stories from NFL Europe and the German Football League with former player and coach Denauld Brown.
+            </p>
           </div>
+
+          <!-- Quick Links Column -->
+          <div>
+            <h3 class="text-lg font-semibold text-[var(--color-dark)] mb-3">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#book-info" class="text-[var(--color-gray)] hover:text-[var(--color-primary-accent)] transition">Buy the Book</a></li>
+              <li><a href="#youtube-feed" class="text-[var(--color-gray)] hover:text-[var(--color-primary-accent)] transition">YouTube Videos</a></li>
+              <li><a href="#substack-feed" class="text-[var(--color-gray)] hover:text-[var(--color-primary-accent)] transition">Substack Newsletter</a></li>
+              <li><a href="#connect" class="text-[var(--color-gray)] hover:text-[var(--color-primary-accent)] transition">Connect</a></li>
+              <li><a href="mailto:contact@peanutsandegos.com" class="text-[var(--color-gray)] hover:text-[var(--color-primary-accent)] transition">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Social Media Column -->
+          <div>
+            <h3 class="text-lg font-semibold text-[var(--color-dark)] mb-3">Follow Us</h3>
+            <div class="flex gap-3 mb-4">
+              <a href="https://www.youtube.com/@peanutsandegos?utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="https://www.instagram.com/peanutsandegos?utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/peanutsandegos/?utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://peanutsandegos.substack.com?utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon substack" aria-label="Substack" title="Substack">
+                <i class="fas fa-newspaper"></i>
+              </a>
+            </div>
+            <div class="flex gap-3">
+              <a href="https://facebook.com/profile.php?id=61575224906188&utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook" title="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="https://open.spotify.com/show/4UR4a3J7vHgbOQAwekujMD?utm_source=website&utm_medium=footer&utm_campaign=social" target="_blank" rel="noopener noreferrer" class="social-icon spotify" aria-label="Spotify" title="Spotify Podcast">
+                <i class="fab fa-spotify"></i>
+              </a>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Pre-Sale Details -->
-        <div class="lg:w-2/3 text-center lg:text-left">
-          <p class="text-[var(--color-primary-accent)] font-semibold uppercase tracking-widest text-sm mb-4">Pre-Sales Launching Soon</p>
-          <p class="text-xl text-[var(--color-dark)] mb-6 text-justify">
-            Dive deep into the structure, leadership, and cultural dynamics of running a top-tier GFL organization. This guide features unparalleled insights from the Munich Cowboys' German Club President and the American Head Coach on **Vereinsführung** (Club Leadership).
+        <!-- Copyright -->
+        <div class="border-t border-[var(--color-gray)]/30 pt-6 text-center">
+          <p class="text-sm text-[var(--color-gray)]">&copy; 2025 Peanuts & Egos. All rights reserved.</p>
+          <p class="text-xs text-[var(--color-gray)] mt-2">
+            <a href="mailto:contact@peanutsandegos.com" class="hover:text-[var(--color-primary-accent)] transition">contact@peanutsandegos.com</a>
           </p>
-          
-          <ul class="list-disc list-inside text-lg text-[var(--color-gray)] space-y-2 mb-8 inline-block text-left">
-            <li>Understanding the e.V. (Registered Association) model.</li>
-            <li>Board management and volunteer recruitment.</li>
-            <li>Strategic planning for import players and coaches.</li>
-            <li>Navigating cultural differences in team management.</li>
-          </ul>
-
-          <div class="bg-[var(--color-light)] p-6 rounded-xl shadow-inner border border-[var(--color-primary-accent)]/30">
-             <p class="text-2xl font-bold text-[var(--color-primary-accent)] mb-4">Don't Miss the Pre-Sale Window!</p>
-             <p class="text-lg text-[var(--color-dark)] mb-4">
-                 Sign up for our exclusive waitlist to be notified the moment pre-sales go live and receive a limited-time bonus chapter.
-             </p>
-             <!-- Mock Email Sign-up (Replace with your actual service form) -->
-             <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto lg:mx-0">
-                <input type="email" placeholder="Enter your email address" class="flex-grow p-3 rounded-lg border-2 border-[var(--color-gray)] focus:border-[var(--color-primary-accent)] outline-none" required>
-                <button type="submit" class="bg-[var(--color-primary-accent)] text-white font-bold p-3 rounded-lg hover:bg-opacity-90 transition duration-300">Join Waitlist</button>
-             </div>
-          </div>
         </div>
       </div>
-      
-    </section>
+    </footer>
+
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-[var(--color-content-bg)] border-t border-[var(--color-gray)] mt-12 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--color-gray)]">
-      <p>&copy; 2025 Peanuts & Egos. All rights reserved.</p>
-      <div class="mt-2 space-x-4">
-        <button onclick="showPage('home-page')" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Home</button>
-        <a href="mailto:contact@peanutsandegos.com" class="hover:text-[var(--color-primary-accent)] text-[var(--color-gray)]">Contact</a>
-      </div>
-    </div>
-  </footer>
+  <script>
+    // --- Scroll to top function ---
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-</div>
+    // --- Content Rendering Functions ---
 
-<script>
-  // --- Page Navigation Logic (Simple Router) ---
-  function showPage(pageId) {
-      document.querySelectorAll('.page-content').forEach(page => {
-          page.classList.add('hidden');
-      });
-      const pageToShow = document.getElementById(pageId);
-      if (pageToShow) {
-          pageToShow.classList.remove('hidden');
-          // Scroll to the top when changing pages
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      // If we are on the home page, scroll to the top of the main content area (to show the hero)
-      if (pageId === 'home-page') {
-          // Update the URL hash to allow linking/bookmarking, though content is still single file
-          window.location.hash = '';
-      } else if (pageId === 'guide-page') {
-          window.location.hash = '#guide';
-      }
-      
-      // Since the app starts on home, ensure all other pages are hidden first run
-      if (pageId === 'home-page' && document.getElementById('guide-page').classList.contains('hidden')) {
-          // Do nothing, already hidden
-      }
-  }
-
-  // --- Content Rendering Functions ---
-
-  // Helper to convert ISO 8601 duration (PT#M#S) to MM:SS or HH:MM:SS
-  function formatDuration(iso) {
+    // Helper to convert ISO 8601 duration (PT#M#S) to MM:SS or HH:MM:SS
+    function formatDuration(iso) {
       if (!iso) return 'N/A';
       const parts = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
       if (!parts) return 'N/A';
@@ -248,75 +507,85 @@
 
       let formatted = '';
       if (hours > 0) {
-          formatted += hours + ':';
+        formatted += hours + ':';
       }
       formatted += String(minutes).padStart(hours > 0 ? 2 : 1, '0') + ':' +
                     String(seconds).padStart(2, '0');
       return formatted;
-  }
+    }
 
-  // Helper to format date from YYYY-MM-DD to Month Day, YYYY
-  function formatDate(dateString) {
+    // Helper to format date from YYYY-MM-DD to Month Day, YYYY
+    function formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  }
+    }
 
-  // --- Real Data from YouTube search for the 'peanutsandegos' channel ---
-  const rawYouTubeVideos = [
-    // Video 1: FROM THE TRENCHES: Longest and most substantial video
-    { title: "FROM THE TRENCHES: What the Players Really Saw in Bielefeld", date: "2025-09-01", video_length: "PT28M11S", video_id: "0ETKnf67JIg" },
-    // Video 2: Book Launch Announcement
-    { title: "Peanuts & Egos book launch on October 9, 2025 #PeanutsAndEgos", date: "2025-04-19", video_length: "PT1M", video_id: "N4jDddxyVKw" },
-    // Video 3: NFL's International Play Trailer
-    { title: "NFL's International Play: Déjà Vu or a Winning Formula?", date: "2024-11-13", video_length: "PT56S", video_id: "8ryneHO8tGg" },
-  ];
+    // --- Real Data from YouTube search for the 'peanutsandegos' channel ---
+    const rawYouTubeVideos = [
+      // Video 1: FROM THE TRENCHES: Longest and most substantial video
+      { title: "FROM THE TRENCHES: What the Players Really Saw in Bielefeld", date: "2025-09-01", video_length: "PT28M11S", video_id: "0ETKnf67JIg" },
+      // Video 2: Book Launch Announcement
+      { title: "Peanuts & Egos book launch on October 9, 2025 #PeanutsAndEgos", date: "2025-04-19", video_length: "PT1M", video_id: "N4jDddxyVKw" },
+      // Video 3: NFL's International Play Trailer
+      { title: "NFL's International Play: Déjà Vu or a Winning Formula?", date: "2024-11-13", video_length: "PT56S", video_id: "8ryneHO8tGg" },
+    ];
 
-  const youtubeVideos = rawYouTubeVideos.map(video => ({
+    const youtubeVideos = rawYouTubeVideos.map(video => ({
       title: video.title,
       date: formatDate(video.date),
       duration: formatDuration(video.video_length),
       embedUrl: `https://www.youtube.com/embed/${video.video_id}`
-  }));
+    }));
 
-  function renderContent() {
-    const youtubeList = document.getElementById('youtube-list');
+    function renderContent() {
+      const youtubeList = document.getElementById('youtube-list');
 
-    // --- Render YouTube Videos (using real data) ---
-    youtubeList.innerHTML = youtubeVideos.map(video => `
-      <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
-        <!-- Video Embed/Placeholder -->
-        <div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
-          <iframe 
-            class="w-full h-full"
-            src="${video.embedUrl}" 
-            title="${video.title}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
-        
-        <!-- Video Details -->
-        <div class="md:w-1/2 flex flex-col justify-between">
-          <div>
-            <h4 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${video.title}</h4>
-            <p class="text-sm text-[var(--color-primary-accent)] font-medium">Duration: ${video.duration}</p>
+      // --- Render YouTube Videos (using real data) ---
+      youtubeList.innerHTML = youtubeVideos.map(video => `
+        <div class="content-card bg-[var(--color-content-bg)] p-4 rounded-xl shadow-lg flex flex-col md:flex-row gap-4 transition duration-300">
+          <!-- Video Embed/Placeholder -->
+          <div class="w-full md:w-1/2 aspect-video bg-[var(--color-dark)] rounded-lg overflow-hidden flex items-center justify-center">
+            <iframe
+              class="w-full h-full"
+              src="${video.embedUrl}"
+              title="${video.title}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
           </div>
-          <p class="text-sm text-[var(--color-gray)] mt-2 md:mt-0">Published: ${video.date}</p>
-        </div>
-      </div>
-    `).join('');
-  }
 
-  // Initialize page view and render content
-  window.onload = function() {
-    renderContent();
-    
-    // Check URL hash for initial page load
-    if (window.location.hash === '#guide') {
-        showPage('guide-page');
-    } else {
-        showPage('home-page');
+          <!-- Video Details -->
+          <div class="md:w-1/2 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-semibold text-[var(--color-dark)] mb-2">${video.title}</h3>
+              <p class="text-sm text-[var(--color-primary-accent)] font-medium">Duration: ${video.duration}</p>
+            </div>
+            <p class="text-sm text-[var(--color-gray)] mt-2 md:mt-0">Published: ${video.date}</p>
+          </div>
+        </div>
+      `).join('');
     }
-  };
-</script>
+
+    // Initialize content rendering
+    window.onload = function() {
+      renderContent();
+    };
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
